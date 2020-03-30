@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/header.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<h1>dentro</h1>
+	
+	<header id="sp-logo">
+		<div class="container">
+			<div class="row">
+				<div id="sp-logo" class="col-sm-12 col-md-12">
+					<div class="sp-column ">
+						<a class="logo" href="index.html">
+							<h1>Viajando con María</h1>
+							<p class="logo-slogan"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<header id="sp-header" style="">
+		<div class="container">
+			<div class="row" style="position: relative;">
+				<div id="sp-menu" class="col-sm-2 col-md-2"></div>
+				<div id="sp-menu" class="col-sm-10 col-md-10"
+					style="position: static;">
+					<div class="sp-column ">
+						<div class="sp-megamenu-wrapper">
+							<a id="offcanvas-toggler" class="visible-xs"
+								href="http://alithemes.com/demo/aruze/#"><i
+								class="fa fa-bars"></i></a>
+							<ul class="sp-megamenu-parent menu-fade hidden-xs">
+								<li class="sp-menu-item current-item active"><a href="#">Inicio</a></li>
+								<li class="sp-menu-item"><a href="#">Categorias</a></li>
+								<li class="sp-menu-item sp-has-child"><a href="#">Sobre mi</a></li>
+								<li class="sp-menu-item"><a href="#">Contacto</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="container">
+		<div class="row">
+			<div  class="col-md-9"></div>
+			<div  class="col-md-3">
+				<div class="row form">				 
+				 	<p>Hola <span th:text="${nombre}"></span></p>
+				 	<p><a th:href="@{/usuario/ver(nombre=${nombre})}">Mi perfil</a></p>				 
+				</div>
+				<div class="row">
+				categorias
+				</div>
+				<div class="row">
+				etiquetas
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+
+</body>
+</html>
