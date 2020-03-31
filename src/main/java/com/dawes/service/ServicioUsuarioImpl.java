@@ -1,5 +1,6 @@
 package com.dawes.service;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	@Override
 	public void save(UsuarioVO u) {
 		ur.save(u);
+	}
+
+
+	@Override
+	public UsuarioVO findByUsername(String nombre) {
+		return ur.findByUsername(nombre);
 	}
  
   

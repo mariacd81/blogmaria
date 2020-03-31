@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class Seguro {
 	@RequestMapping("/admin")
 	public String admin() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
-		UserDetails us = (UserDetails)authentication.getPrincipal();
-		String nombre= us.getUsername();
 		return "admin/a";
 	}
 
