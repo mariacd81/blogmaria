@@ -21,7 +21,7 @@ import com.dawes.service.ServicioUsuarioRol;
 
 @Controller
 @RequestMapping("/usuario")
-public class UsuarioController {
+public class PerfilController {
 	
 	
 	@Autowired
@@ -34,7 +34,7 @@ public class UsuarioController {
 		String nombre= us.getUsername();
 		UsuarioVO usuario = su.findByUsername(nombre);
 		modelo.addAttribute("usuario", usuario);
-		return "usuario/verUsuario";
+		return "perfil/verUsuario";
 	}
 	
 	@RequestMapping("/modificarForm")
@@ -44,7 +44,7 @@ public class UsuarioController {
 		String nombre= us.getUsername();
 		UsuarioVO usuario = su.findByUsername(nombre);
 		modelo.addAttribute("usuario", usuario);
-		return "usuario/modificarUsuario";
+		return "perfil/modificarUsuario";
 	}
 	
 	@RequestMapping("/modificar")
@@ -56,6 +56,6 @@ public class UsuarioController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
-		return "usuario/verUsuario";
+		return "perfil/verUsuario";
 	}
 }

@@ -28,8 +28,7 @@ public class RegistroController {
 	ServicioRol sr;
 	
 	@Autowired
-	ServicioUsuarioRol sur;
-	
+	ServicioUsuarioRol sur;	
 
 
 	@RequestMapping("/form")
