@@ -12,4 +12,6 @@ public interface ServicioUsuario {
 	UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException;
 	void save(UsuarioVO u);
 	UsuarioVO findByUsername(String nombre);
+	Optional<UsuarioVO> findById(int id);
+	Iterable<UsuarioVO> findAll();
 }

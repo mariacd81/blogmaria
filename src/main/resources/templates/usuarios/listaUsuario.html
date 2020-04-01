@@ -53,23 +53,33 @@
 	<main class="container">
 		<div class="row">
 			<div  class="col-md-9">
-				<div class="row form">
-				 <form th:object="${usuario}"  method="post" >
-				 	<p>Log in</p>
-				 	<p><input type="text" placeholder="Usuario" disabled th:field="*{username}"/></p>
-				 	<p><input type="password" placeholder="Contraseña" disabled th:field="*{password}"/></p>
-				 	<p><input type="text" placeholder="Nombre" disabled th:field="*{nombre}" /></p>
-				 	<p><input type="text" placeholder="apellidos" disabled th:field="*{apellidos}"/></p>
-				 	<p><input type="email" placeholder="Usuario" disabled th:field="*{correo}"/></p>
-				 	<p><a th:href="@{/perfil/modificarForm}">Modificar</a></p>	
-				 </form>
-				</div>
-				<div class="row">
-				categorias
-				</div>
-				<div class="row">
-				etiquetas
-				</div>
+				<table id="paradas">
+
+					<tr>
+						<th>Userid</th>
+						<th>Username</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Email</th>
+						<th>Modificar</th>
+						<th>Borrar</th>
+					</tr>
+					<tr th:each="usuario: ${usuario}">
+
+						<td th:text="${usuario.userid}" />
+						<td th:text="${usuario.username}" />
+						<td th:text="${usuario.nombre}" />
+						<td th:text="${usuario.apellidos}" />
+						<td th:text="${usuario.correo}" />
+						<td><a
+							th:href="@{modificarForm(userid=${usuario.userid})}">Modificar
+						</a></td>
+						<td><a
+							th:href="@{eliminar(userid=${usuario.userid})}">Eliminar
+						</a></td>
+					</tr>
+
+				</table>
 			</div>
 		</div>
 

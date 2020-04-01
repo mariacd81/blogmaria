@@ -7,7 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dawes.modelo.RolVO;
 import com.dawes.modelo.UsuarioRolVO;
@@ -20,31 +22,26 @@ import com.dawes.service.ServicioUsuario;
 import com.dawes.service.ServicioUsuarioRol;
 
 @Controller
-@RequestMapping("/perfil")
-public class PerfilController {
+@RequestMapping("/usuario")
+public class UsuariosController {
 	
 	
 	@Autowired
 	ServicioUsuario su;
 	
-	@RequestMapping("/ver")
-	public String ver(Model modelo) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
-		UserDetails us = (UserDetails)authentication.getPrincipal();
-		String nombre= us.getUsername();
-		UsuarioVO usuario = su.findByUsername(nombre);
+	@RequestMapping("/listar")
+	public String listar(Model modelo) {		
+		Iterable<UsuarioVO> usuario = su.findAll();
 		modelo.addAttribute("usuario", usuario);
-		return "perfil/verUsuario";
+		return "usuarios/listaUsuario";
 	}
 	
+	
 	@RequestMapping("/modificarForm")
-	public String modificarForm( Model modelo) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
-		UserDetails us = (UserDetails)authentication.getPrincipal();
-		String nombre= us.getUsername();
-		UsuarioVO usuario = su.findByUsername(nombre);
+	public String modificarForm(@RequestParam int userid,Model modelo) {		
+		UsuarioVO usuario = su.findById(userid).get();
 		modelo.addAttribute("usuario", usuario);
-		return "perfil/modificarUsuario";
+		return "usuarios/modificarUsuario";
 	}
 	
 	@RequestMapping("/modificar")
@@ -56,6 +53,6 @@ public class PerfilController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
-		return "perfil/verUsuario";
+		return "usuarios/listaUsuario";
 	}
 }

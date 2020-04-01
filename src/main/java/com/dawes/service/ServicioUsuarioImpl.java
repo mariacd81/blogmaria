@@ -52,6 +52,18 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	public UsuarioVO findByUsername(String nombre) {
 		return ur.findByUsername(nombre);
 	}
+
+
+	@Override
+	public Optional<UsuarioVO> findById(int id) {
+		return ur.findById((long) id);
+	}
+
+
+	@Override
+	public Iterable<UsuarioVO> findAll() {
+		return ur.findAll();
+	}
  
   
  

@@ -1,6 +1,9 @@
 package com.dawes.controlador;
 
+import java.util.Collection;
+
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,17 @@ public class Seguro {
 	public String registrado(Model modelo) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
 		UserDetails us = (UserDetails)authentication.getPrincipal();
+		String role = "ROLE_ADMIN";
+		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+		for (GrantedAuthority authority : authorities) {
+			if(authority.getAuthority().equals(role))
+			{
+				String nombre= us.getUsername();
+				modelo.addAttribute("nombre", nombre);
+				modelo.addAttribute("admin",true);
+				return "/admin/index";
+			}
+		  }
 		String nombre= us.getUsername();
 		modelo.addAttribute("nombre", nombre);
 		return "/registrado/index";
