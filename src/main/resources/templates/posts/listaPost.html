@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Ver Perfil</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+	<header th:replace="fragmentos/header.html :: header"></header>
+	<main class="container">
+		<div class="row">
+			<div  class="col-md-9">
+				<table id="paradas">
+
+					<tr>
+						<th>PostId</th>
+						<th>Titulo</th>
+						<th>Fecha</th>
+						<th>Modificar</th>
+						<th>Borrar</th>
+					</tr>
+					<tr th:each="posts: ${post}">
+
+						<td th:text="${posts.postid}" />
+						<td th:text="${posts.titulo}" />
+						<td th:text="${posts.fecha}" />
+						<td><a
+							th:href="@{modificarForm(postid=${posts.postid})}">Modificar
+						</a></td>
+						<td><a
+							th:href="@{eliminar(postid=${posts.postid})}">Eliminar
+						</a></td>
+					</tr>
+
+				</table>
+				<a th:href="@{/post/crearPost}" class="btn" id="enviar">Crear post</a>
+			</div>
+		</div>
+
+	</main>
+
+
+</body>
+</html>

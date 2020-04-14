@@ -114,4 +114,68 @@ form input{
 	border-radius: 5px;
 	margin: 0 auto;
 }
+
+.postprinci h1{
+        font-family: 'Dancing Script';
+        font-size: 5em;
+        color: goldenrod;
+        margin: 10px;
+        text-align: center;
+}
+
+.postprinci img{
+	float: left;
+    width: 50%;
+    margin: 0px 10px;
+}
+
+.postp p{
+    text-align: justify;
+}
+
+.postp a{
+    float: right;
+   color: #cf9f6a;
+}
+.aside > div{
+    margin: 15px;
+}
+.cat a, .eti a{
+   
+    display: block;
+    margin: 0px 15px; 
+}
+
+.cat a:hover, .eti a:hover{
+   text-decoration: underline; 
+   color: #cf9f6a;
+}
+
+.form a{
+    display: block;
+    margin: 10px;
+}
+
+
+h3{
+    color: #cf9f6a;
+    padding: 20px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.anteriores > div > div > p{
+    height: 230px;
+}
+
+.anteriores a, .anteriores h6 {
+     color: #cf9f6a;
+}
+
+.anteriores > div > div  {
+     overflow: hidden;
+}
     

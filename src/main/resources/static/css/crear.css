@@ -1,0 +1,30 @@
+form >p> label,form >p>input, form >p> textarea{
+
+	display: block;
+	width: 100%;
+}
+
+#enviar{
+	color: #fff;
+    background-color: #cf9f60;
+    border-color: #cf9f60;
+}
+
+.etiquetas label{
+	display: block;
+
+}
+
+.etiquetas div{
+	display: inline-block;	
+	margin: 10px;
+}
+
+
+.etiquetas div *{
+	display: inline-block;
+	
+	margin: 5px;
+}
+
+

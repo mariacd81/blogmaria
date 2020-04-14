@@ -14,9 +14,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "post")
@@ -24,25 +30,34 @@ public class PostVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_post;
+	private int postid;
+	
+	@Column( length = 100000 )
 	private String post;
+	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate fecha;
 	private String titulo;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_categoria")
 	private CategoriaVO categoria;
-	private Blob foto;
+	
+	private String foto;
 	
 	@OneToMany(mappedBy="post",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
-	private List<EtiquetaPostVO> etiquetapost;
+	private List<EtiquetaPostVO> etiquetapost;	
 	
-	/*mensajes
-	@OneToMany(mappedBy="post",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
-	private List<AlumnoCursoVO> cursos;
-	*/
-		
+	@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
+	private List<ComentarioVO> comentarios;	
 	
-	public PostVO(String post, LocalDate fecha, String titulo, CategoriaVO categoria, Blob foto) {
+	
+	public List<ComentarioVO> getComentarios() {
+		return comentarios;
+	}
+	public void setComentarios(List<ComentarioVO> comentarios) {
+		this.comentarios = comentarios;
+	}
+	public PostVO(String post, LocalDate fecha, String titulo, CategoriaVO categoria, String foto) {
 		super();
 		this.post = post;
 		this.fecha = fecha;
@@ -50,11 +65,14 @@ public class PostVO {
 		this.categoria = categoria;
 		this.foto = foto;
 	}
-	public Long getPostid() {
-		return id_post;
+	public PostVO() {
+		super();
 	}
-	public void setPostid(Long postid) {
-		this.id_post = postid;
+	public int getPostid() {
+		return postid;
+	}
+	public void setPostid(int postid) {
+		this.postid = postid;
 	}
 	public String getPost() {
 		return post;
@@ -80,20 +98,28 @@ public class PostVO {
 	public void setCategoria(CategoriaVO categoria) {
 		this.categoria = categoria;
 	}
-	public Blob getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(Blob foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+	
+	public List<EtiquetaPostVO> getEtiquetapost() {
+		return etiquetapost;
+	}
+	public void setEtiquetapost(List<EtiquetaPostVO> etiquetapost) {
+		this.etiquetapost = etiquetapost;
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((etiquetapost == null) ? 0 : etiquetapost.hashCode());
 		result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
 		result = prime * result + ((foto == null) ? 0 : foto.hashCode());
-		result = prime * result + ((id_post == null) ? 0 : id_post.hashCode());
+		result = prime * result + postid;
 		result = prime * result + ((post == null) ? 0 : post.hashCode());
 		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
 		return result;
@@ -112,6 +138,11 @@ public class PostVO {
 				return false;
 		} else if (!categoria.equals(other.categoria))
 			return false;
+		if (etiquetapost == null) {
+			if (other.etiquetapost != null)
+				return false;
+		} else if (!etiquetapost.equals(other.etiquetapost))
+			return false;
 		if (fecha == null) {
 			if (other.fecha != null)
 				return false;
@@ -122,10 +153,7 @@ public class PostVO {
 				return false;
 		} else if (!foto.equals(other.foto))
 			return false;
-		if (id_post == null) {
-			if (other.id_post != null)
-				return false;
-		} else if (!id_post.equals(other.id_post))
+		if (postid != other.postid)
 			return false;
 		if (post == null) {
 			if (other.post != null)
@@ -139,6 +167,7 @@ public class PostVO {
 			return false;
 		return true;
 	}
+
 	
 	
 	

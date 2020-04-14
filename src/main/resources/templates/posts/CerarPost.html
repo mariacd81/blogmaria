@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header th:replace="fragmentos/header.html :: header"></header>
+<div class="container" style="margin-top: 30px">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card">
+                
+                <form th:object="${postt}" th:action="@{/post/crear}" method="post"  enctype="multipart/form-data" >
+                   <p><label>Titulo Post</label>
+                   <input type="text" / th:field="*{titulo}"></p>
+                   
+                   <p><label>Texto</label>
+                   <textarea th:field="*{post}"></textarea></p>
+                   
+                   <p><label>categoria</label>
+                   <select th:field="*{categoria}"  >
+					   	<option value="0">Elija una categoria</option>
+						<option th:each="categorias: ${categorias}" th:value="${categorias.id_categoria}" th:text="${categorias.descripcion}"></option>
+					</select>
+					</p>
+                   
+				   <div class="etiquetas">
+					   <label>etiquetas</label>
+						<div  th:each="etiquetas: ${etiquetas}" >				
+						<input type="checkbox" name="etiquetas" th:value="${etiquetas.id_etiqueta}" 
+						/><label th:text="${etiquetas.descripcion}"></label>
+				   		</div>
+					</div>
+					
+				
+                   
+                    <div class="form-group">
+						<label>Foto</label>
+                        <label class="custom-file" id="customFile"> 
+                            <input  type="file" class="custom-file-input" name="file">
+                            <span class="custom-file-control form-control-file">Seleccionar</span>
+                        </label>
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        <button type="submit" class="btn btn-success" id="enviar">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+</body>
+<script>
+    $('.custom-file-input').on('change',function(){
+        $(this).next('.form-control-file').addClass("selected").html($(this).val());
+    })
+</script>
+</html>

@@ -30,6 +30,10 @@ public class CategoriaVO {
 	@OneToMany(mappedBy="categoria",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<PostVO> post;
 
+	public CategoriaVO() {
+		super();
+	}
+	
 	public CategoriaVO(String descripcion) {
 		super();
 		this.descripcion = descripcion;

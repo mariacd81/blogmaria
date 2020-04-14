@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+<title>Modificar Perfil</title>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/header.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
-<h1>dentro</h1>
-	
 	<header id="sp-logo">
 		<div class="container">
 			<div class="row">
@@ -53,20 +52,20 @@
 
 	<main class="container">
 		<div class="row">
-			<div  class="col-md-9"></div>
-			<div  class="col-md-3">
-				<div class="row form">				 
-				 	<p>Hola <span th:text="${nombre}"></span></p>
-				 	<p><a th:href="@{/usuario/listar}">Gestion de usuario</a></p>	
-				 	<p><a th:href="@{/post/listar}">Gestion de post</a></p>	
-				 	<p><a th:href="@{/perfil/ver}">Mi perfil</a></p>				 
+			<div  class="col-md-9">
+				<div class="row form">
+				 <form th:object="${usuario}" th:action="@{/usuario/modificar}" method="post" >
+				 	<p>Log in</p>
+				 	<p><input type="text" placeholder="Usuario" disabled th:field="*{username}"/></p>
+				 	<p><input type="password" placeholder="Contraseña" th:field="*{password}"/></p>
+				 	<p><input type="password" placeholder=" Repita Contraseña" /></p>
+				 	<p><input type="text" placeholder="Nombre" th:field="*{nombre}" /></p>
+				 	<p><input type="text" placeholder="apellidos" th:field="*{apellidos}"/></p>
+				 	<p><input type="email" placeholder="Usuario" th:field="*{correo}"/></p>				 	
+				 	<p><input type="submit" value="Modificar" id="entrar"/></p>
+				 </form>
 				</div>
-				<div class="row">
-				categorias
-				</div>
-				<div class="row">
-				etiquetas
-				</div>
+				<p><a th:href="@{/usuario/listar}">Gestion de usuario</a></p>
 			</div>
 		</div>
 

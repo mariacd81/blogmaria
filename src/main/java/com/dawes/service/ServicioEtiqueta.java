@@ -1,7 +1,9 @@
 package com.dawes.service;
 
+import java.util.Optional;
 import com.dawes.modelo.EtiquetaVO;
 
 public interface ServicioEtiqueta {
-	void save(EtiquetaVO e);
+	Iterable<EtiquetaVO> findAll();
+	Optional<EtiquetaVO> findById(long i);
 }

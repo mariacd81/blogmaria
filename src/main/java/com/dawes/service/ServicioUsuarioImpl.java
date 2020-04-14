@@ -64,6 +64,13 @@ public class ServicioUsuarioImpl implements UserDetailsService, ServicioUsuario 
 	public Iterable<UsuarioVO> findAll() {
 		return ur.findAll();
 	}
+
+
+	@Override
+	public void delete(UsuarioVO usuario) {
+		// TODO Auto-generated method stub
+		ur.delete(usuario);
+	}
  
   
  

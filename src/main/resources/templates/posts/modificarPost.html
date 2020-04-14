@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>Modificar Post</title>
+	<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+	<header th:replace="fragmentos/header.html :: header"></header>
+	<main class="container">		
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card">
+                
+                <form th:object="${post}" th:action="@{/post/modificar}" method="post"  enctype="multipart/form-data" >
+				   
+					 <input type="hidden"  th:field="*{postid}"></p>
+					<p><label>Titulo Post</label>
+                   <input type="text"  th:field="*{titulo}"></p>
+                   
+                   <p><label>Texto</label>
+                   <textarea th:field="*{post}"></textarea></p>
+                   
+                   <p><label>categoria</label>
+                   <select th:field="*{categoria}"  >
+					   	<option value="0">Elija una categoria</option>
+						<option th:each="categorias: ${categorias}" th:value="${categorias.id_categoria}" th:text="${categorias.descripcion}"></option>
+					</select>
+					</p>
+                   
+				   <div class="etiquetas">
+					   <label>etiquetas</label>
+						<div  th:each="etiquetas: ${etiquetas}" >				
+						<input type="checkbox" name="etiquetas" th:value="${etiquetas.id_etiqueta}" 
+						/><label th:text="${etiquetas.descripcion}"></label>
+				   		</div>
+					</div>
+					
+				
+                   
+                    <div class="form-group">
+						<label>Foto</label>
+                        <label class="custom-file" id="customFile"> 
+                            <input  type="file" class="custom-file-input" name="file">
+                            <span class="custom-file-control form-control-file">Seleccionar</span>
+                        </label>
+                    </div>
+                    <div style="margin-bottom: 10px">
+                        <button type="submit" class="btn btn-success" id="enviar">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+
+	</main>
+
+
+</body>
+
+</html>

@@ -1,13 +1,7 @@
 
 package com.dawes.modelo;
 
-import java.sql.Blob;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,23 +9,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "etiqueta")
+@Table(name = "etiqueta_Post")
 public class EtiquetaPostVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_etiqueta_post;
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_etiqueta")
 	private EtiquetaVO etiqueta;
 	
-	@ManyToOne
-	@JoinColumn(name="id_post")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="postid")
 	private PostVO post;
+	
+	
+
+	public EtiquetaPostVO() {
+		super();
+	}
+
+	public EtiquetaPostVO(PostVO postt, EtiquetaVO etiquetaVO) {
+		this.post = postt;
+		this.etiqueta = etiquetaVO;
+	}
 
 	public Long getId_etiqueta_post() {
 		return id_etiqueta_post;

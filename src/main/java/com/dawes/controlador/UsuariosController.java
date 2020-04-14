@@ -44,6 +44,15 @@ public class UsuariosController {
 		return "usuarios/modificarUsuario";
 	}
 	
+	@RequestMapping("/eliminar")
+	public String eliminar(@RequestParam int userid,Model modelo) {		
+		UsuarioVO usuario = su.findById(userid).get();
+		su.delete(usuario);
+		Iterable<UsuarioVO> usuarios = su.findAll();
+		modelo.addAttribute("usuario", usuarios);
+		return "usuarios/listaUsuario";
+	}
+	
 	@RequestMapping("/modificar")
 	public String modificar(@ModelAttribute UsuarioVO user, Model modelo) {					
 		UsuarioVO usuario = su.findByUsername(user.getUsername());

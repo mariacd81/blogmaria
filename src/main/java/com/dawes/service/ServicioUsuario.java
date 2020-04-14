@@ -14,4 +14,5 @@ public interface ServicioUsuario {
 	UsuarioVO findByUsername(String nombre);
 	Optional<UsuarioVO> findById(int id);
 	Iterable<UsuarioVO> findAll();
+	void delete(UsuarioVO usuario);
 }
