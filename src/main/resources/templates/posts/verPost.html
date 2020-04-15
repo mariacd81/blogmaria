@@ -7,6 +7,8 @@
 	<title>Insert title here</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
+	<script src="../javascript/jquery-3.4.1.js"></script>
 
 </head>
 
@@ -27,77 +29,105 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="media text-muted pt-3">						
-						<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-							<strong class="d-block text-gray-dark">@username</strong><span>Publicado:</span>
-							Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-							tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-						</p>
+					<h5>Comentarios</h5>
+
+					<div class="media text-muted pt-3">
+						<div class="comentario">
+							<textarea id="coment" name="comentario" rows="3"></textarea>
+							<p  id="enviar" class="btn">Comentar</p>
+						</div>
+						<div class=" pb-3 border-bottom border-gray" th:each="comentarios: ${comentarios}">
+							<strong class="d-block text-gray-dark"></strong><span>Publicado:</span>
+							<span th:text="${comentarios.fecha}"></span>
+							<span>por @</span>
+							<span th:text="${comentarios.userid.username}"></span>
+							<p th:text="${comentarios.coment}"></p>
+							</p>
+						</div>
+					</div>
+
+					<div class="row">
+						<h5>Anteriores</h5>
+						<div class=" anteriores">
+							<div th:if="${sig}" class="col-md-4">
+								<div>
+									<h5 th:text="${sig.titulo}"></h5>
+									<img th:src="@{${ruta}+${sig.foto}}"><img>
+									<p th:text="${sig.post}"></p>
+								</div>
+								<a th:href="@{/posts/verpost(id=${sig.postid})}">Leer mas</a>
+							</div>
+							<div th:if="${sig1}" class="col-md-4">
+								<div>
+									<h5 th:text="${sig1.titulo}"></h5>
+									<img th:src="@{${ruta}+${sig1.foto}}"><img>
+									<p th:text="${sig1.post}"></p>
+								</div>
+								<a th:href="@{/posts/verpost(id=${sig1.postid})}">Leer mas</a>
+							</div>
+							<div th:if="${sig2}">
+								<div>
+									<h5 th:text="${sig2.titulo}"></h5>
+									<img th:src="@{${ruta}+${sig2.foto}}"><img>
+									<p th:text="${sig2.post}"></p>
+								</div>
+								<a th:href="@{/posts/verpost(id=${sig2.postid})}">Leer mas</a>
+							</div>
+
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class=" anteriores">
-						<div th:if="${sig}" class="col-md-4">
-							<div>
-								<h5 th:text="${sig.titulo}"></h5>
-								<img th:src="@{${ruta}+${sig.foto}}"><img>
-								<p th:text="${sig.post}"></p>
-							</div>
-							<a th:href="@{/posts/verpost(id=${sig.postid})}">Leer mas</a>
-						</div>
-						<div th:if="${sig1}" class="col-md-4">
-							<div>
-								<h5 th:text="${sig1.titulo}"></h5>
-								<img th:src="@{${ruta}+${sig1.foto}}"><img>
-								<p th:text="${sig1.post}"></p>
-							</div>
-							<a th:href="@{/posts/verpost(id=${sig1.postid})}">Leer mas</a>
-						</div>
-						<div th:if="${sig2}">
-							<div>
-								<h5 th:text="${sig2.titulo}"></h5>
-								<img th:src="@{${ruta}+${sig2.foto}}"><img>
-								<p th:text="${sig2.post}"></p>
-							</div>
-							<a th:href="@{/posts/verpost(id=${sig2.postid})}">Leer mas</a>
-						</div>
+
+				<!------------------------ Aside --------------------------------------->
+				<div class="col-md-3 aside">
+					<div class="row form">
+
+						<a th:href="@{/registrado}">Log in</a>
+						<a th:href="@{/registro/form}">Registrarse</a>
+						</form>
+					</div>
+					<div class="row cat">
+						<h3>Categorias</h3>
+						<a th:each="categorias: ${categorias}"
+							th:href="@{/post/categoria(id=${categorias.id_categoria})}"
+							th:text="${categorias.descripcion}"></a>
+					</div>
+					<div class="row eti">
+						<h3>Etiquetas</h3>
+						<a th:each="etiquetas: ${etiquetas}" th:href="@{/post/etiquetas(id=${etiquetas.id_etiqueta})}"
+							th:text="${etiquetas.descripcion}"></a>
 
 					</div>
 				</div>
 			</div>
-
-			<!------------------------ Aside --------------------------------------->
-			<div class="col-md-3 aside">
-				<div class="row form">
-
-					<a th:href="@{/registrado}">Log in</a>
-					<a th:href="@{/registro/form}">Registrarse</a>
-					</form>
-				</div>
-				<div class="row cat">
-					<h3>Categorias</h3>
-					<a th:each="categorias: ${categorias}" th:href="@{/post/categoria(id=${categorias.id_categoria})}"
-						th:text="${categorias.descripcion}"></a>
-				</div>
-				<div class="row eti">
-					<h3>Etiquetas</h3>
-					<a th:each="etiquetas: ${etiquetas}" th:href="@{/post/etiquetas(id=${etiquetas.id_etiqueta})}"
-						th:text="${etiquetas.descripcion}"></a>
-
-				</div>
-			</div>
-		</div>
 
 	</main>
-	<div th:if="${param.error}">
-		Usuario o password invalidos.
-	</div>
-	<div th:if="${param.logout}">
-		Has hecho logout.
-	</div>
-	<a th:href="@{/registrado}">registrado</a>
-	<a th:href="@{/admin}">admin</a>
-	<a th:href="@{/logout}">logout</a>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#enviar").click(function () {
+				var comentario = $("#coment").val();
+				var json = {
+					"comentario": comentario
+				};
+
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					url: "/post/nuevoComentario",
+					data: JSON.stringify(json),
+					dataType: 'json',
+					cache: false,
+					timeout: 600000,
+					success: function (data) {
+						alert(data);
+					},
+					error: function (e) {
+						alert(e);
+					}
+				});
+			});
+		});
+	</script>
 
 </body>
 

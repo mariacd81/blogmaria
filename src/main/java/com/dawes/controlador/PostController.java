@@ -6,27 +6,34 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dawes.modelo.CategoriaVO;
+import com.dawes.modelo.ComentarioVO;
 import com.dawes.modelo.EtiquetaPostVO;
 import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.PostVO;
 import com.dawes.service.ServicioCategoria;
 import com.dawes.service.ServicioEtiqueta;
 import com.dawes.service.ServicioPost;
+import com.dawes.service.ServicioUsuario;
 import com.dawes.service.UploadFileService;
 import com.dawes.service.ServicioEtiquetaPost;
 
 @Controller
 @RequestMapping("/post")
 public class PostController {
-	
+	@Autowired
+	ServicioUsuario su;
 	
 	@Autowired
 	ServicioPost sp;
@@ -139,7 +146,8 @@ public class PostController {
 		Iterable<CategoriaVO> cat = sc.findeAll();
 		modelo.addAttribute("categorias", cat);
 		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);		
+		modelo.addAttribute("etiquetas", eti);			
+		modelo.addAttribute("comentarios", post1.getComentarios());
 		return "/posts/verPost";
 	}
 	
@@ -156,4 +164,11 @@ public class PostController {
 		modelo.addAttribute("post", post);
 		return "posts/listaPost";
 	}
+	
+	
+	@RequestMapping(value = "/nuevoComentario", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	 public @ResponseBody ComentarioVO nuevoComentario(@RequestBody ComentarioVO comentario) {		
+		ComentarioVO comentario1= new ComentarioVO(LocalDate.now(),"nuevo",sp.findById(5).get(),su.findById(1).get());
+	  return comentario1;
+	 }
 }

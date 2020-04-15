@@ -10,7 +10,7 @@ public class PreparacionApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PreparacionApplication.class, args);
-		//Persistence.generateSchema("seguridad", null);
+		Persistence.generateSchema("seguridad", null);
 	}
 
 }

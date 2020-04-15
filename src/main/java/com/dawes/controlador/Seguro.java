@@ -107,4 +107,6 @@ public class Seguro {
 		modelo.addAttribute("message", "No tienes permiso de acceso a esta página");
 		return "403Page";
 	}
+	
+	
 }
