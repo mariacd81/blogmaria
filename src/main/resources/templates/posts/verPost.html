@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+	<title>Ver Post</title>
 	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="../css/header.css" rel="stylesheet" type="text/css" />
 	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
@@ -30,23 +30,27 @@
 				</div>
 				<div class="row">
 					<h5>Comentarios</h5>
-
-					<div class="media text-muted pt-3">
-						<div class="comentario">
-							<form th:action="@{/post/guardarComentario}" method="POST">
-								<input type="hidden" name="postid" th:field="${post.postid}">
-							<textarea id="coment" name="comentario" rows="3"></textarea>
-							<input type="submit"  value="Comentar" class="btn">
-							</form>
+					<div th:if="${session.username}">
+						<div class="media text-muted pt-3">
+							<div class="comentario">
+								<form th:action="@{/post/guardarComentario}" method="POST">
+									<input type="hidden" name="postid" th:field="${post.postid}">
+									<textarea id="coment" name="comentario" rows="3"></textarea>
+									<input type="submit" value="Comentar" class="btn">
+								</form>
+							</div>
+							<div class=" pb-3 border-bottom border-gray" th:each="comentarios: ${comentarios}">
+								<strong class="d-block text-gray-dark"></strong><span>Publicado:</span>
+								<span th:text="${comentarios.fecha}"></span>
+								<span>por @</span>
+								<span th:text="${comentarios.userid.username}"></span>
+								<p th:text="${comentarios.coment}"></p>
+								</p>
+							</div>
 						</div>
-						<div class=" pb-3 border-bottom border-gray" th:each="comentarios: ${comentarios}">
-							<strong class="d-block text-gray-dark"></strong><span>Publicado:</span>
-							<span th:text="${comentarios.fecha}"></span>
-							<span>por @</span>
-							<span th:text="${comentarios.userid.username}"></span>
-							<p th:text="${comentarios.coment}"></p>
-							</p>
-						</div>
+					</div>
+					<div th:unless="${session.username}">
+						Debe estar registrado
 					</div>
 
 					<div class="row">
@@ -80,32 +84,15 @@
 						</div>
 					</div>
 				</div>
-
-				<!------------------------ Aside --------------------------------------->
-				<div class="col-md-3 aside">
-					<div class="row form">
-
-						<a th:href="@{/registrado}">Log in</a>
-						<a th:href="@{/registro/form}">Registrarse</a>
-						</form>
-					</div>
-					<div class="row cat">
-						<h3>Categorias</h3>
-						<a th:each="categorias: ${categorias}"
-							th:href="@{/post/categoria(id=${categorias.id_categoria})}"
-							th:text="${categorias.descripcion}"></a>
-					</div>
-					<div class="row eti">
-						<h3>Etiquetas</h3>
-						<a th:each="etiquetas: ${etiquetas}" th:href="@{/post/etiquetas(id=${etiquetas.id_etiqueta})}"
-							th:text="${etiquetas.descripcion}"></a>
-
-					</div>
-				</div>
 			</div>
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
+			</div>
+		</div>
 
 	</main>
-	
+
 
 </body>
 

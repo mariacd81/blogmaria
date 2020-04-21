@@ -14,22 +14,9 @@
 	<main class="container">
 		<div class="row">
 			<div  class="col-md-9"></div>
-			<div  class="col-md-3">
-				<div class="row form">
-				 <form th:action="@{/login}" method="post" >
-				 	<p>Log in</p>
-				 	<p><input type="text" placeholder="Usuario" name="username"/></p>
-				 	<p><input type="password" placeholder="Contraseña" name="password"/></p>
-				 	<p><input type="submit" value="Entrar" id="entrar"/></p>
-				 	<p><a>Registrarse</a></p>
-				 </form>
-				</div>
-				<div class="row">
-				categorias
-				</div>
-				<div class="row">
-				etiquetas
-				</div>
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
 			</div>
 		</div>
 

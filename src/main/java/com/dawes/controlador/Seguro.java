@@ -1,7 +1,10 @@
 package com.dawes.controlador;
 
+import java.net.http.HttpRequest;
 import java.util.Collection;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,9 +43,10 @@ public class Seguro {
 	}
 
 	@RequestMapping("/registrado")
-	public String registrado(Model modelo) {
+	public String registrado(Model modelo, HttpSession session) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
 		UserDetails us = (UserDetails)authentication.getPrincipal();
+		session.setAttribute("username", us.getUsername());
 		String role = "ROLE_ADMIN";
 		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 		for (GrantedAuthority authority : authorities) {
@@ -92,13 +96,13 @@ public class Seguro {
 	}
 
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpSession session) {
 		return "login";
 	}
 
 	@RequestMapping("/logout")
 	public String logout() {
-		return "logout";
+		return "index";
 	}
 
 	@RequestMapping(value = "/403")

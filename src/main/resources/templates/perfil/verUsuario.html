@@ -12,31 +12,6 @@
 <body>
 	<header th:replace="fragmentos/header.html :: header"></header>
 
-
-	<header id="sp-header" style="">
-		<div class="container">
-			<div class="row" style="position: relative;">
-				<div id="sp-menu" class="col-sm-2 col-md-2"></div>
-				<div id="sp-menu" class="col-sm-10 col-md-10"
-					style="position: static;">
-					<div class="sp-column ">
-						<div class="sp-megamenu-wrapper">
-							<a id="offcanvas-toggler" class="visible-xs"
-								href="http://alithemes.com/demo/aruze/#"><i
-								class="fa fa-bars"></i></a>
-							<ul class="sp-megamenu-parent menu-fade hidden-xs">
-								<li class="sp-menu-item current-item active"><a href="#">Inicio</a></li>
-								<li class="sp-menu-item"><a href="#">Categorias</a></li>
-								<li class="sp-menu-item sp-has-child"><a href="#">Sobre mi</a></li>
-								<li class="sp-menu-item"><a href="#">Contacto</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
 	<main class="container">
 		<div class="row">
 			<div  class="col-md-9">
@@ -51,12 +26,11 @@
 				 	<p><a th:href="@{/perfil/modificarForm}">Modificar</a></p>	
 				 </form>
 				</div>
-				<div class="row">
-				categorias
-				</div>
-				<div class="row">
-				etiquetas
-				</div>
+				
+			</div>
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
 			</div>
 		</div>
 

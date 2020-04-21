@@ -151,6 +151,13 @@ form input{
    color: #cf9f6a;
 }
 
+#prim {
+    margin: 20px 0px 0px 10px;
+}
+
+.form{
+    padding: 10px;
+}
 .form a{
     display: block;
     margin: 10px;
