@@ -7,6 +7,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +25,9 @@ import com.dawes.modelo.ComentarioVO;
 import com.dawes.modelo.EtiquetaPostVO;
 import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.PostVO;
+import com.dawes.modelo.UsuarioVO;
 import com.dawes.service.ServicioCategoria;
+import com.dawes.service.ServicioComentario;
 import com.dawes.service.ServicioEtiqueta;
 import com.dawes.service.ServicioPost;
 import com.dawes.service.ServicioUsuario;
@@ -46,6 +51,9 @@ public class PostController {
 	
 	@Autowired
 	ServicioEtiquetaPost sep;
+	
+	@Autowired
+	ServicioComentario sco;
 	
 	 @Autowired
 	 UploadFileService uploadFileService;
@@ -165,10 +173,38 @@ public class PostController {
 		return "posts/listaPost";
 	}
 	
+	@RequestMapping("/guardarComentario")
+	public String guardarComentario(@RequestParam int postid, @RequestParam String comentario, Model modelo) { 
+		PostVO post1 = sp.findById(postid).get();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();     
+		UserDetails us = (UserDetails)authentication.getPrincipal();
+		String nombre= us.getUsername();
+		UsuarioVO usuario = su.findByUsername(nombre);
+		sco.save(new ComentarioVO(LocalDate.now(), comentario, post1, usuario ));
+		
+		List<PostVO> post = sp.findByOrderByPostidDesc();
+		int tamano = post.size();
+		int i=0;
+		while(post.get(i).getPostid() != postid ) {
+			i++;
+		}
+		modelo.addAttribute("post", post1);
+		if(tamano > i+1)		
+			modelo.addAttribute("sig", post.get(i+1));	
+		if(tamano > i+2)
+			modelo.addAttribute("sig1", post.get(i+2));
+		if(tamano > i+3)
+			modelo.addAttribute("sig2", post.get(i+3));
+
+		modelo.addAttribute("ruta", "../files/");
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+		modelo.addAttribute("comentarios", post1.getComentarios());
+		return "/posts/verPost";
+	}
 	
-	@RequestMapping(value = "/nuevoComentario", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	 public @ResponseBody ComentarioVO nuevoComentario(@RequestBody ComentarioVO comentario) {		
-		ComentarioVO comentario1= new ComentarioVO(LocalDate.now(),"nuevo",sp.findById(5).get(),su.findById(1).get());
-	  return comentario1;
-	 }
+	
+	
 }

@@ -33,8 +33,11 @@
 
 					<div class="media text-muted pt-3">
 						<div class="comentario">
+							<form th:action="@{/post/guardarComentario}" method="POST">
+								<input type="hidden" name="postid" th:field="${post.postid}">
 							<textarea id="coment" name="comentario" rows="3"></textarea>
-							<p  id="enviar" class="btn">Comentar</p>
+							<input type="submit"  value="Comentar" class="btn">
+							</form>
 						</div>
 						<div class=" pb-3 border-bottom border-gray" th:each="comentarios: ${comentarios}">
 							<strong class="d-block text-gray-dark"></strong><span>Publicado:</span>
@@ -102,32 +105,7 @@
 			</div>
 
 	</main>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$("#enviar").click(function () {
-				var comentario = $("#coment").val();
-				var json = {
-					"comentario": comentario
-				};
-
-				$.ajax({
-					type: "POST",
-					contentType: "application/json",
-					url: "/post/nuevoComentario",
-					data: JSON.stringify(json),
-					dataType: 'json',
-					cache: false,
-					timeout: 600000,
-					success: function (data) {
-						alert(data);
-					},
-					error: function (e) {
-						alert(e);
-					}
-				});
-			});
-		});
-	</script>
+	
 
 </body>
 
