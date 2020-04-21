@@ -5,14 +5,8 @@
 </head>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <body>
+<header th:replace="fragmentos/header.html :: header"></header>
 
-<main class="container">
-		<div class="row">
-			<div  class="col-9">.col-md-8</div>
-			<div  class="col-2">.col-md-4</div>
-		</div>
-
-	</main>
  
     <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
  
