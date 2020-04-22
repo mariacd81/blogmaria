@@ -38,14 +38,14 @@ public class PostVO {
 	private LocalDate fecha;
 	private String titulo;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "id_categoria")
 	private CategoriaVO categoria;
 	
 	private String foto;
-	
-	@OneToMany(mappedBy="post",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
-	private List<EtiquetaPostVO> etiquetapost;	
+	 
+	@OneToMany(mappedBy="post",cascade= {CascadeType.ALL}, orphanRemoval = true)
+	private List<EtiquetaPostVO> etiquetapost;	  
 	
 	@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<ComentarioVO> comentarios;	

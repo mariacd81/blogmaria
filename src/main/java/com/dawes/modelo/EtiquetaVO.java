@@ -17,7 +17,7 @@ public class EtiquetaVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_etiqueta;
+	private Long etiquetaid;
 	
 	private String descripcion;
 	
@@ -34,12 +34,12 @@ public class EtiquetaVO {
 		this.descripcion = descripcion;
 	}
 
-	public Long getId_etiqueta() {
-		return id_etiqueta;
+	public Long getEtiquetaid() {
+		return etiquetaid;
 	}
 
-	public void setId_etiqueta(Long id_categoria) {
-		this.id_etiqueta = id_categoria;
+	public void setEtiquetaid(Long id_categoria) {
+		this.etiquetaid = id_categoria;
 	}
 
 	public String getDescripcion() {
@@ -55,7 +55,7 @@ public class EtiquetaVO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((id_etiqueta == null) ? 0 : id_etiqueta.hashCode());
+		result = prime * result + ((etiquetaid == null) ? 0 : etiquetaid.hashCode());
 		return result;
 	}
 
@@ -73,10 +73,10 @@ public class EtiquetaVO {
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
-		if (id_etiqueta == null) {
-			if (other.id_etiqueta != null)
+		if (etiquetaid == null) {
+			if (other.etiquetaid != null)
 				return false;
-		} else if (!id_etiqueta.equals(other.id_etiqueta))
+		} else if (!etiquetaid.equals(other.etiquetaid))
 			return false;
 		return true;
 	}

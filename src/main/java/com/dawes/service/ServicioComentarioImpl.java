@@ -14,20 +14,33 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.dawes.modelo.CategoriaVO;
+import com.dawes.modelo.ComentarioVO;
 import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.repository.CategoriaRepository;
+import com.dawes.repository.ComentarioRepository;
 import com.dawes.repository.UserRepository;
  
 @Service
-public class ServicioComentarioImpl implements  ServicioCategoria {
+public class ServicioComentarioImpl implements  ServicioComentario {
  
     @Autowired
-    private CategoriaRepository cr;
+    private ComentarioRepository cr;
+
+	
 
 	@Override
-	public Iterable<CategoriaVO> findeAll() {
-		return cr.findAll();
+	public void save(ComentarioVO c) {
+		// TODO Auto-generated method stub
+		cr.save(c);
+		
+	}
+
+	@Override
+	public void delete(ComentarioVO c) {
+		// TODO Auto-generated method stub
+		cr.delete(c);
+		
 	}
  
   

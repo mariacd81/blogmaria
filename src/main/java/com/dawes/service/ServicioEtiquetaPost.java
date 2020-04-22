@@ -3,6 +3,7 @@ package com.dawes.service;
 import java.util.Optional;
 
 import com.dawes.modelo.EtiquetaPostVO;
+import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.PostVO;
 
 public interface ServicioEtiquetaPost {
@@ -13,4 +14,5 @@ public interface ServicioEtiquetaPost {
 	void deleteAll( Iterable<EtiquetaPostVO> entities);
 	void removeById(long epv);
 	Optional<EtiquetaPostVO> findById(long i);
+	Iterable<EtiquetaPostVO> findByEtiqueta(EtiquetaVO etiqueta);
 }

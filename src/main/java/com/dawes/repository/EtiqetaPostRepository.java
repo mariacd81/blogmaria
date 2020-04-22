@@ -17,4 +17,5 @@ public interface EtiqetaPostRepository extends CrudRepository<EtiquetaPostVO, Lo
 	List<Integer> deleteByPost(long post);
 	Iterable<EtiquetaPostVO> findByPost(PostVO mod);
 	//void removeById(long epv);
+	Iterable<EtiquetaPostVO> findByEtiqueta(EtiquetaVO etiqueta);
 }

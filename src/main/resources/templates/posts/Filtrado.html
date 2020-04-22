@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Ver Post</title>
+	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
+	<link href="../css/filtrar.css" rel="stylesheet" type="text/css" />
+	<script src="../javascript/jquery-3.4.1.js"></script>
+
+</head>
+
+<body>
+	<header th:replace="fragmentos/header.html :: header"></header>
+
+	<main class="container">
+		<div class="row">
+			<!-------------------------Post principal----------------------------------->
+			<div class="col-md-9 postprinci container">
+				<div class="row miflex">
+					<div class="hijoflex" th:each="ep : ${posts}">
+						<div>
+						<h1 id="filtroh1" th:text="${ep.post.titulo}"></h1>						
+						<p th:text="${ep.post.fecha}"></p>						
+						<img th:src="@{${ruta}+${ep.post.foto}}"><img>
+						<p th:text="${ep.post.post}"></p>						
+						</div>
+						<p><a th:href="@{/post/verpost(id=${ep.post.postid})}">Leer mas</a></p>
+					</div> 
+				</div>
+			</div>
+
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
+			</div>
+		</div>
+
+	</main>	
+</body>
+</html>

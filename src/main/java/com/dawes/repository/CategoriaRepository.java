@@ -24,6 +24,5 @@ import com.dawes.modelo.UsuarioVO;
 
 public interface CategoriaRepository extends CrudRepository<CategoriaVO, Long> {
 
-	
-	
+		
 }

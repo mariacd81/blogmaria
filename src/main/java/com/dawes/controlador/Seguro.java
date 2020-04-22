@@ -52,6 +52,7 @@ public class Seguro {
 		for (GrantedAuthority authority : authorities) {
 			if(authority.getAuthority().equals(role))
 			{
+				session.setAttribute("adminn", us.getUsername());
 				String nombre= us.getUsername();
 				modelo.addAttribute("nombre", nombre);
 				modelo.addAttribute("admin",true);

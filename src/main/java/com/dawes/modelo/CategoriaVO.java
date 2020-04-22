@@ -1,8 +1,7 @@
 
 package com.dawes.modelo;
 
-import java.sql.Blob;
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Set;
 
@@ -24,11 +23,11 @@ public class CategoriaVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_categoria;	
+	private Long categoriaid;	
 	private String descripcion;
 	
 	@OneToMany(mappedBy="categoria",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
-	private List<PostVO> post;
+	private List<PostVO> postca;
 
 	public CategoriaVO() {
 		super();
@@ -39,12 +38,21 @@ public class CategoriaVO {
 		this.descripcion = descripcion;
 	}
 
-	public Long getId_categoria() {
-		return id_categoria;
+	
+	public List<PostVO> getPostca() {
+		return postca;
 	}
 
-	public void setId_categoria(Long id_categoria) {
-		this.id_categoria = id_categoria;
+	public void setPostca(List<PostVO> post) {
+		this.postca = post;
+	}
+
+	public Long getCategoriaid() {
+		return categoriaid;
+	}
+
+	public void setCategoriaid(Long id_categoria) {
+		this.categoriaid = id_categoria;
 	}
 
 	public String getDescripcion() {
@@ -60,7 +68,7 @@ public class CategoriaVO {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((id_categoria == null) ? 0 : id_categoria.hashCode());
+		result = prime * result + ((categoriaid == null) ? 0 : categoriaid.hashCode());
 		return result;
 	}
 
@@ -78,10 +86,10 @@ public class CategoriaVO {
 				return false;
 		} else if (!descripcion.equals(other.descripcion))
 			return false;
-		if (id_categoria == null) {
-			if (other.id_categoria != null)
+		if (categoriaid == null) {
+			if (other.categoriaid != null)
 				return false;
-		} else if (!id_categoria.equals(other.id_categoria))
+		} else if (!categoriaid.equals(other.categoriaid))
 			return false;
 		return true;
 	}

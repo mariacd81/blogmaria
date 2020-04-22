@@ -26,9 +26,7 @@ public class EtiquetaPostVO {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="postid")
-	private PostVO post;
-	
-	
+	private PostVO post; 	
 
 	public EtiquetaPostVO() {
 		super();
@@ -55,11 +53,11 @@ public class EtiquetaPostVO {
 		this.etiqueta = etiquetas;
 	}
 
-	public PostVO getPosts() {
+	public PostVO getPost() {
 		return post;
 	}
 
-	public void setPosts(PostVO posts) {
+	public void setPost(PostVO posts) {
 		this.post = posts;
 	}
 	

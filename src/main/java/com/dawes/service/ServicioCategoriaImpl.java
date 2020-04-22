@@ -2,6 +2,7 @@ package com.dawes.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,21 @@ import com.dawes.repository.ComentarioRepository;
 import com.dawes.repository.UserRepository;
  
 @Service
-public class ServicioCategoriaImpl implements  ServicioComentario {
+public class ServicioCategoriaImpl implements  ServicioCategoria {
  
     @Autowired
-    private ComentarioRepository cr;
+    private CategoriaRepository cr;
 
 	@Override
-	public void save(ComentarioVO c) {
+	public Iterable<CategoriaVO> findeAll() {
 		// TODO Auto-generated method stub
-		cr.save(c);
+		return cr.findAll();
 	}
 
 	@Override
-	public void delete(ComentarioVO c) {
+	public Optional<CategoriaVO> findById(int id) {
 		// TODO Auto-generated method stub
-		cr.delete(c);
+		return cr.findById((long) id);
 	}
  
   

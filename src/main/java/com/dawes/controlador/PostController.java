@@ -205,6 +205,31 @@ public class PostController {
 		return "/posts/verPost";
 	}
 	
+	@RequestMapping("/etiquetas")
+	public String etiquetas(@RequestParam int id_etiqueta, Model modelo) { 
+		Iterable<EtiquetaPostVO> ep = sep.findByEtiqueta(se.findById((long)id_etiqueta).get());
+		modelo.addAttribute("posts", ep);
+		modelo.addAttribute("ruta", "../files/");
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+		return "/posts/Filtrado"; 
+	}
+	
+	@RequestMapping("/categoria") 
+	public String categoria(@RequestParam int id_categoria, Model modelo) { 
+		Optional<CategoriaVO> categ = sc.findById(id_categoria);
+		Iterable<PostVO> postss = categ.get().getPostca();
+		modelo.addAttribute("posts", postss);
+		modelo.addAttribute("ruta", "../files/");
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+		return "/posts/FiltradoC";
+	}
+	
 	
 	
 }

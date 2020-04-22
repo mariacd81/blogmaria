@@ -21,15 +21,13 @@
 		</div>
 
 	</main>
- <div th:if="${param.error}">
-            Usuario o password invalidos.
-        </div>
-        <div th:if="${param.logout}">
-            Has hecho logout.
-        </div>
-	<a th:href="@{/registrado}">registrado</a>
-	<a th:href="@{/admin}">admin</a>
-	<a th:href="@{/logout}">logout</a>
+	<form th:action="@{/login}" method="post" >
+-				 	<p>Log in</p>
+-				 	<p><input type="text" placeholder="Usuario" name="username"/></p>
+-				 	<p><input type="password" placeholder="Contrase?a" name="password"/></p>
+-				 	<p><input type="submit" value="Entrar" id="entrar"/></p>
+-				 	<p><a>Registrarse</a></p>
+-				 </form>
 
 </body>
 </html>

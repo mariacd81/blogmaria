@@ -59,6 +59,12 @@ public class ServicioEtiquetaPostImpl implements ServicioEtiquetaPost {
 		// TODO Auto-generated method stub
 		return epr.findById(i);
 	}
+
+	@Override
+	public Iterable<EtiquetaPostVO> findByEtiqueta(EtiquetaVO etiqueta) {
+		// TODO Auto-generated method stub
+		return epr.findByEtiqueta(etiqueta);
+	}
 	
 	
  
