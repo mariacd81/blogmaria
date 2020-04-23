@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dawes.modelo.CategoriaVO;
+import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.RolVO;
 import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
@@ -29,10 +31,16 @@ public class UsuariosController {
 	@Autowired
 	ServicioUsuario su;
 	
+	@Autowired
+	ServicioEtiqueta se;
+	@Autowired
+	ServicioCategoria sc;
+	
 	@RequestMapping("/listar")
 	public String listar(Model modelo) {		
 		Iterable<UsuarioVO> usuario = su.findAll();
 		modelo.addAttribute("usuario", usuario);
+		aide(modelo);	
 		return "usuarios/listaUsuario";
 	}
 	
@@ -40,9 +48,11 @@ public class UsuariosController {
 	@RequestMapping("/modificarForm")
 	public String modificarForm(@RequestParam int userid,Model modelo) {		
 		UsuarioVO usuario = su.findById(userid).get();
-		modelo.addAttribute("usuario", usuario);
+		modelo.addAttribute("usuario", usuario);		
+		aide(modelo);			
 		return "usuarios/modificarUsuario";
 	}
+	
 	
 	@RequestMapping("/eliminar")
 	public String eliminar(@RequestParam int userid,Model modelo) {		
@@ -50,6 +60,7 @@ public class UsuariosController {
 		su.delete(usuario);
 		Iterable<UsuarioVO> usuarios = su.findAll();
 		modelo.addAttribute("usuario", usuarios);
+		aide(modelo);	
 		return "usuarios/listaUsuario";
 	}
 	
@@ -62,6 +73,14 @@ public class UsuariosController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
+		aide(modelo);	
 		return "usuarios/listaUsuario";
+	}
+	
+	private void aide(Model modelo) {
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
 	}
 }

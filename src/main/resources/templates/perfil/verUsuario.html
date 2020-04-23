@@ -6,7 +6,8 @@
 <meta charset="ISO-8859-1">
 <title>Ver Perfil</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../css/header.css" rel="stylesheet" type="text/css" /
+	<link href="../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -17,13 +18,12 @@
 			<div  class="col-md-9">
 				<div class="row form">
 				 <form th:object="${usuario}"  method="post" >
-				 	<p>Log in</p>
+				 	<p>Ver usuario</p>
 				 	<p><input type="text" placeholder="Usuario" disabled th:field="*{username}"/></p>
-				 	<p><input type="password" placeholder="Contraseña" disabled th:field="*{password}"/></p>
 				 	<p><input type="text" placeholder="Nombre" disabled th:field="*{nombre}" /></p>
 				 	<p><input type="text" placeholder="apellidos" disabled th:field="*{apellidos}"/></p>
 				 	<p><input type="email" placeholder="Usuario" disabled th:field="*{correo}"/></p>
-				 	<p><a th:href="@{/perfil/modificarForm}">Modificar</a></p>	
+				 	<p><a  class="btn" th:href="@{/perfil/modificarForm}">Modificar</a></p>	
 				 </form>
 				</div>
 				

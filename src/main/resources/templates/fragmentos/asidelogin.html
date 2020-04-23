@@ -1,16 +1,12 @@
-<div th:fragment="aside">
+<div th:fragment="asidelogin">
 	<div class="row form">
-		<div th:if="${session.username}">
-			<p><span id="prim">Hola</span> <span th:text="${session.username}"></span></p>
-			<p><a th:href="@{/perfil/ver}">Mi perfil</a></p>
-			<p th:if="${session.admin}"> <a>Gestionar usuarios</a></p>
-			<p th:if="${session.admin}"> <a>Gestionar post</a></p>
-			<p><a th:href="@{/logout}">Log out</a></p>
-		</div>
-		<div th:unless="${session.username}">
-			<p><a th:href="@{/registrado}">Log in</a></p>
+		<form th:action="@{/login}" method="post">
+			<p>Log in</p>
+			<p><input type="text" placeholder="Usuario" name="username" /></p>
+			<p><input type="password" placeholder="Contrasena" name="password" /></p>
+			<p><input type="submit" value="Entrar" id="entrar" /></p>
 			<p><a th:href="@{/registro/form}">Registrarse</a></p>
-		</div>
+		</form>
 	</div>
 	<div class="row cat">
 		<h3>Categorias</h3>

@@ -1,11 +1,16 @@
 package com.dawes.controlador;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dawes.modelo.CategoriaVO;
+import com.dawes.modelo.EtiquetaVO;
+import com.dawes.modelo.PostVO;
 import com.dawes.modelo.RolVO;
 import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
@@ -28,13 +33,23 @@ public class RegistroController {
 	ServicioRol sr;
 	
 	@Autowired
+	ServicioEtiqueta se;
+	
+	@Autowired
+	ServicioCategoria sc ;
+	
+	@Autowired
 	ServicioUsuarioRol sur;	
 
 
 	@RequestMapping("/form")
 	public String registro(Model modelo) {
 		UsuarioVO u = new UsuarioVO();
-		modelo.addAttribute("usuario", u);
+		modelo.addAttribute("usuario", u);		
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
 		return "registroForm";
 	}
 	

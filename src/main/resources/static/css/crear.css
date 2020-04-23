@@ -27,4 +27,8 @@ form >p> label,form >p>input, form >p> textarea{
 	margin: 5px;
 }
 
+.btn{
+border-color: #cf9f60;
+}
+
 

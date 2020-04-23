@@ -4,9 +4,10 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="ISO-8859-1">
-<title>Modificar Perfil</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="css/header.css" rel="stylesheet" type="text/css" />
+<title>Modificar Usuarios</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -28,6 +29,10 @@
 				 </form>
 				</div>
 				<p><a th:href="@{/usuario/listar}">Gestion de usuario</a></p>
+			</div>
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
 			</div>
 		</div>
 

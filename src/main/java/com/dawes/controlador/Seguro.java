@@ -52,7 +52,7 @@ public class Seguro {
 		for (GrantedAuthority authority : authorities) {
 			if(authority.getAuthority().equals(role))
 			{
-				session.setAttribute("adminn", us.getUsername());
+				session.setAttribute("admin", us.getUsername());
 				String nombre= us.getUsername();
 				modelo.addAttribute("nombre", nombre);
 				modelo.addAttribute("admin",true);
@@ -97,12 +97,34 @@ public class Seguro {
 	}
 
 	@RequestMapping("/login")
-	public String login(HttpSession session) {
+	public String login(HttpSession session, Model modelo) {
+		List<PostVO> post = sp.findByOrderByPostidDesc();
+		PostVO post1 = post.get(0);
+		modelo.addAttribute("post", post1);
+		modelo.addAttribute("sig", post.get(1));
+		modelo.addAttribute("sig1", post.get(2));
+		modelo.addAttribute("sig2", post.get(3));
+		modelo.addAttribute("ruta", "../files/");
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
 		return "login";
 	}
 
 	@RequestMapping("/logout")
-	public String logout() {
+	public String logout(Model modelo) {
+		List<PostVO> post = sp.findByOrderByPostidDesc();
+		PostVO post1 = post.get(0);
+		modelo.addAttribute("post", post1);
+		modelo.addAttribute("sig", post.get(1));
+		modelo.addAttribute("sig1", post.get(2));
+		modelo.addAttribute("sig2", post.get(3));
+		modelo.addAttribute("ruta", "../files/");
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);		
 		return "index";
 	}
 

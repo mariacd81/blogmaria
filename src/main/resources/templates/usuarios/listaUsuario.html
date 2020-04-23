@@ -5,8 +5,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Ver Perfil</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="css/header.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../../css/header.css" rel="stylesheet" type="text/css" />
+	<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -15,7 +16,7 @@
 	<main class="container">
 		<div class="row">
 			<div  class="col-md-9">
-				<table id="paradas">
+				<table class="table">
 
 					<tr>
 						<th>Userid</th>
@@ -33,15 +34,19 @@
 						<td th:text="${usuario.nombre}" />
 						<td th:text="${usuario.apellidos}" />
 						<td th:text="${usuario.correo}" />
-						<td><a
+						<td><a class="btn"
 							th:href="@{modificarForm(userid=${usuario.userid})}">Modificar
 						</a></td>
-						<td><a
+						<td><a class="btn"
 							th:href="@{eliminar(userid=${usuario.userid})}">Eliminar
 						</a></td>
 					</tr>
 
 				</table>
+			</div>
+			<!------------------------ Aside --------------------------------------->
+			<div class="col-md-3 aside">
+				<div th:replace="fragmentos/aside.html :: aside"></div>
 			</div>
 		</div>
 
