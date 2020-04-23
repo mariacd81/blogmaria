@@ -3,8 +3,8 @@
 		<div th:if="${session.username}">
 			<p><span id="prim">Hola</span> <span th:text="${session.username}"></span></p>
 			<p><a th:href="@{/perfil/ver}">Mi perfil</a></p>
-			<p th:if="${session.admin}"> <a>Gestionar usuarios</a></p>
-			<p th:if="${session.admin}"> <a>Gestionar post</a></p>
+			<p th:if="${session.admin}"> <a th:href="@{/usuario/listar}">Gestionar usuarios</a></p>
+			<p th:if="${session.admin}"> <a th:href="@{/post/listar}">Gestionar post</a></p>
 			<p><a th:href="@{/logout}">Log out</a></p>
 		</div>
 		<div th:unless="${session.username}">
@@ -24,3 +24,4 @@
 
 	</div>
 </div>
+

@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dawes.modelo.CategoriaVO;
+import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.RolVO;
 import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
@@ -26,6 +28,10 @@ public class PerfilController {
 	
 	@Autowired
 	ServicioUsuario su;
+	@Autowired
+	ServicioEtiqueta se;
+	@Autowired
+	ServicioCategoria sc;
 	
 	@RequestMapping("/ver")
 	public String ver(Model modelo) {
@@ -34,6 +40,7 @@ public class PerfilController {
 		String nombre= us.getUsername();
 		UsuarioVO usuario = su.findByUsername(nombre);
 		modelo.addAttribute("usuario", usuario);
+		aside(modelo);
 		return "perfil/verUsuario";
 	}
 	
@@ -44,6 +51,7 @@ public class PerfilController {
 		String nombre= us.getUsername();
 		UsuarioVO usuario = su.findByUsername(nombre);
 		modelo.addAttribute("usuario", usuario);
+		aside(modelo);
 		return "perfil/modificarUsuario";
 	}
 	
@@ -56,6 +64,15 @@ public class PerfilController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
+		aside(modelo);
 		return "perfil/verUsuario";
 	}
+	
+	public void aside(Model modelo) {
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+	}
+
 }

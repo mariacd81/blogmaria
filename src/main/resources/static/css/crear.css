@@ -4,6 +4,7 @@ form >p> label,form >p>input, form >p> textarea{
 	width: 100%;
 }
 
+
 #enviar{
 	color: #fff;
     background-color: #cf9f60;
@@ -29,6 +30,8 @@ form >p> label,form >p>input, form >p> textarea{
 
 .btn{
 border-color: #cf9f60;
+width: auto;
+float: right;
 }
 
 

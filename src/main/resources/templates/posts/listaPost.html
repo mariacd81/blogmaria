@@ -15,7 +15,7 @@
 	<main class="container">
 		<div class="row">
 			<div  class="col-md-9">
-				<table id="paradas">
+				<table  class="table">
 
 					<tr>
 						<th>PostId</th>
@@ -29,10 +29,10 @@
 						<td th:text="${posts.postid}" />
 						<td th:text="${posts.titulo}" />
 						<td th:text="${posts.fecha}" />
-						<td><a
+						<td><a class="btn"
 							th:href="@{modificarForm(postid=${posts.postid})}">Modificar
 						</a></td>
-						<td><a
+						<td><a class="btn"
 							th:href="@{eliminar(postid=${posts.postid})}">Eliminar
 						</a></td>
 					</tr>

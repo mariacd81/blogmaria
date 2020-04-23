@@ -40,7 +40,7 @@ public class UsuariosController {
 	public String listar(Model modelo) {		
 		Iterable<UsuarioVO> usuario = su.findAll();
 		modelo.addAttribute("usuario", usuario);
-		aide(modelo);	
+		aside(modelo);	
 		return "usuarios/listaUsuario";
 	}
 	
@@ -49,7 +49,7 @@ public class UsuariosController {
 	public String modificarForm(@RequestParam int userid,Model modelo) {		
 		UsuarioVO usuario = su.findById(userid).get();
 		modelo.addAttribute("usuario", usuario);		
-		aide(modelo);			
+		aside(modelo);			
 		return "usuarios/modificarUsuario";
 	}
 	
@@ -60,7 +60,7 @@ public class UsuariosController {
 		su.delete(usuario);
 		Iterable<UsuarioVO> usuarios = su.findAll();
 		modelo.addAttribute("usuario", usuarios);
-		aide(modelo);	
+		aside(modelo);
 		return "usuarios/listaUsuario";
 	}
 	
@@ -73,14 +73,16 @@ public class UsuariosController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
-		aide(modelo);	
+		aside(modelo);
 		return "usuarios/listaUsuario";
 	}
 	
-	private void aide(Model modelo) {
+	public void aside(Model modelo) {
 		Iterable<CategoriaVO> cat = sc.findeAll();
 		modelo.addAttribute("categorias", cat);
 		Iterable<EtiquetaVO> eti = se.findAll();
 		modelo.addAttribute("etiquetas", eti);
 	}
+
+	
 }

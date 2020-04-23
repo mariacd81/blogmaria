@@ -60,10 +60,12 @@ public class PostController {
 	
 	@RequestMapping("/listar")
 	public String listar(Model modelo) {		
-		Iterable<PostVO> post = sp.findAll();
-		modelo.addAttribute("post", post);
+		buscarTodos(modelo);
+		aside(modelo);
 		return "posts/listaPost";
 	}
+
+	
 	
 	@RequestMapping("/crear")
 	public String crearForm(Model modelo, @RequestParam int[] etiquetas, @ModelAttribute PostVO postt, @RequestParam("file") MultipartFile file ) {	
@@ -83,8 +85,8 @@ public class PostController {
 			sep.save(new EtiquetaPostVO(postt,se.findById(i).get()));
 			System.out.println(i);
 		}
-		Iterable<PostVO> post = sp.findAll();
-		modelo.addAttribute("post", post);
+		buscarTodos(modelo);
+		aside(modelo);
 		return "posts/listaPost";
 	}	
 	  
@@ -117,6 +119,8 @@ public class PostController {
 		            e.printStackTrace();
 		        }
 			}	
+			mod.setTitulo(postt.getTitulo());
+			mod.setPost(postt.getPost());
 			mod.setCategoria(postt.getCategoria());			
 			sp.save(mod);
 			Iterable<EtiquetaPostVO> ep = sep.findByPost(mod);
@@ -128,8 +132,8 @@ public class PostController {
 				sep.save(new EtiquetaPostVO(postt,se.findById(i).get()));
 				System.out.println(i);
 			}
-			Iterable<PostVO> post = sp.findAll();
-			modelo.addAttribute("post", post);
+			aside(modelo);
+			buscarTodos(modelo);
 			return "posts/listaPost";
 	}
 	
@@ -151,13 +155,12 @@ public class PostController {
 			modelo.addAttribute("sig2", post.get(i+3));
 
 		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);			
+		aside(modelo);			
 		modelo.addAttribute("comentarios", post1.getComentarios());
 		return "/posts/verPost";
 	}
+
+
 	
 	@RequestMapping("/eliminar")
 	public String eliminarPost(@RequestParam int postid,Model modelo) {		
@@ -166,10 +169,8 @@ public class PostController {
 			sep.deleteAll(p.getEtiquetapost());
 		
 		sp.delete(p);
-		modelo.addAttribute("categorias", sc.findeAll());
-		modelo.addAttribute("etiquetas", se.findAll());
-		Iterable<PostVO> post = sp.findAll();
-		modelo.addAttribute("post", post);
+		aside(modelo);
+		buscarTodos(modelo);
 		return "posts/listaPost";
 	}
 	
@@ -182,6 +183,47 @@ public class PostController {
 		UsuarioVO usuario = su.findByUsername(nombre);
 		sco.save(new ComentarioVO(LocalDate.now(), comentario, post1, usuario ));
 		
+		listapost(postid, modelo, post1);
+
+		modelo.addAttribute("ruta", "../files/");
+		aside(modelo);
+		modelo.addAttribute("comentarios", post1.getComentarios());
+		return "/posts/verPost";
+	}
+
+		
+	@RequestMapping("/etiquetas")
+	public String etiquetas(@RequestParam int id_etiqueta, Model modelo) { 
+		Iterable<EtiquetaPostVO> ep = sep.findByEtiqueta(se.findById((long)id_etiqueta).get());
+		modelo.addAttribute("posts", ep);
+		modelo.addAttribute("ruta", "../files/");
+		aside(modelo);
+		return "/posts/Filtrado"; 
+	}
+	
+	@RequestMapping("/categoria") 
+	public String categoria(@RequestParam int id_categoria, Model modelo) { 
+		Optional<CategoriaVO> categ = sc.findById(id_categoria);
+		Iterable<PostVO> postss = categ.get().getPostca();
+		modelo.addAttribute("posts", postss);
+		modelo.addAttribute("ruta", "../files/");
+		aside(modelo);
+		return "/posts/FiltradoC";
+	}
+	
+	private void buscarTodos(Model modelo) {
+		Iterable<PostVO> post = sp.findAll();
+		modelo.addAttribute("post", post);
+	}
+	
+	private void aside(Model modelo) {
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+	}
+	
+	private void listapost(int postid, Model modelo, PostVO post1) {
 		List<PostVO> post = sp.findByOrderByPostidDesc();
 		int tamano = post.size();
 		int i=0;
@@ -195,39 +237,6 @@ public class PostController {
 			modelo.addAttribute("sig1", post.get(i+2));
 		if(tamano > i+3)
 			modelo.addAttribute("sig2", post.get(i+3));
-
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);
-		modelo.addAttribute("comentarios", post1.getComentarios());
-		return "/posts/verPost";
-	}
-	
-	@RequestMapping("/etiquetas")
-	public String etiquetas(@RequestParam int id_etiqueta, Model modelo) { 
-		Iterable<EtiquetaPostVO> ep = sep.findByEtiqueta(se.findById((long)id_etiqueta).get());
-		modelo.addAttribute("posts", ep);
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);
-		return "/posts/Filtrado"; 
-	}
-	
-	@RequestMapping("/categoria") 
-	public String categoria(@RequestParam int id_categoria, Model modelo) { 
-		Optional<CategoriaVO> categ = sc.findById(id_categoria);
-		Iterable<PostVO> postss = categ.get().getPostca();
-		modelo.addAttribute("posts", postss);
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);
-		return "/posts/FiltradoC";
 	}
 	
 	
