@@ -12,12 +12,12 @@
 			<p><a th:href="@{/registro/form}">Registrarse</a></p>
 		</div>
 	</div>
-	<div class="row cat">
+	<div class=" cat">
 		<h3>Categorias</h3>
 		<a th:each="categorias: ${categorias}" th:href="@{/post/categoria(id_categoria=${categorias.categoriaid})}"
 			th:text="${categorias.descripcion}"></a>
 	</div>
-	<div class="row eti">
+	<div class=" eti">
 		<h3>Etiquetas</h3>
 		<a th:each="etiquetas: ${etiquetas}" th:href="@{/post/etiquetas(id_etiqueta=${etiquetas.etiquetaid})}"
 			th:text="${etiquetas.descripcion}"></a>

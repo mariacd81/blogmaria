@@ -65,6 +65,10 @@ a, a:hover, a:focus, a:active {
     padding: 0;
 }
 
+.show li {
+	display: block;
+}
+
 .sp-megamenu-parent >li >a {
     color: #cf9f6a;
     padding: 20px;
@@ -199,10 +203,22 @@ h5{
     border-radius: 10px;
 }
 
-.comentario a{
+.comentario a, nav, nav button{
     float: right;
 }
 
-.comentario ~ div{
+nav div{
+    float: left;
+}
+
+.form input[type="text"], .form input[type="password"] {
+    width: 85%;
+}
+
+.form form {
+	width: 100%;
+}
+
+.comentario ~ div, main{
     clear: both;
 }

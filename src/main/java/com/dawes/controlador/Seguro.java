@@ -56,48 +56,29 @@ public class Seguro {
 				String nombre= us.getUsername();
 				modelo.addAttribute("nombre", nombre);
 				modelo.addAttribute("admin",true);
-				return "/admin/index";
+				cargar(modelo);
+				return "admin/index";
 			}
 		  }
 		String nombre= us.getUsername();
 		modelo.addAttribute("nombre", nombre);
-		return "/registrado/index";
+		cargar(modelo);
+		return "registrado/index";
 	}
 
 	@RequestMapping("/index")
 	public String index(Model modelo) { 
-		List<PostVO> post = sp.findByOrderByPostidDesc();
-		PostVO post1 = post.get(0);
-		modelo.addAttribute("post", post1);
-		modelo.addAttribute("sig", post.get(1));
-		modelo.addAttribute("sig1", post.get(2));
-		modelo.addAttribute("sig2", post.get(3));
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);		
+		cargar(modelo);		
 		return "index";
 	}
 	
 	@RequestMapping("/")
 	public String index2(Model modelo) { 
-		List<PostVO> post = sp.findByOrderByPostidDesc();
-		PostVO post1 = post.get(0);
-		modelo.addAttribute("post", post1);
-		modelo.addAttribute("sig", post.get(1));
-		modelo.addAttribute("sig1", post.get(2));
-		modelo.addAttribute("sig2", post.get(3));
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);		
+		cargar(modelo);		
 		return "index";
 	}
 
-	@RequestMapping("/login")
-	public String login(HttpSession session, Model modelo) {
+	private void cargar(Model modelo) {
 		List<PostVO> post = sp.findByOrderByPostidDesc();
 		PostVO post1 = post.get(0);
 		modelo.addAttribute("post", post1);
@@ -109,22 +90,17 @@ public class Seguro {
 		modelo.addAttribute("categorias", cat);
 		Iterable<EtiquetaVO> eti = se.findAll();
 		modelo.addAttribute("etiquetas", eti);
+	}
+
+	@RequestMapping("/login")
+	public String login(HttpSession session, Model modelo) {
+		cargar(modelo);
 		return "login";
 	}
 
 	@RequestMapping("/logout")
 	public String logout(Model modelo) {
-		List<PostVO> post = sp.findByOrderByPostidDesc();
-		PostVO post1 = post.get(0);
-		modelo.addAttribute("post", post1);
-		modelo.addAttribute("sig", post.get(1));
-		modelo.addAttribute("sig1", post.get(2));
-		modelo.addAttribute("sig2", post.get(3));
-		modelo.addAttribute("ruta", "../files/");
-		Iterable<CategoriaVO> cat = sc.findeAll();
-		modelo.addAttribute("categorias", cat);
-		Iterable<EtiquetaVO> eti = se.findAll();
-		modelo.addAttribute("etiquetas", eti);		
+		cargar(modelo);		
 		return "index";
 	}
 
