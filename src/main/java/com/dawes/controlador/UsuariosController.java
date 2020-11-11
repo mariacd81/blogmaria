@@ -1,27 +1,19 @@
 package com.dawes.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dawes.modelo.CategoriaVO;
 import com.dawes.modelo.EtiquetaVO;
-import com.dawes.modelo.RolVO;
-import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.seguridad.EncrytedPasswordUtils;
 import com.dawes.service.ServicioCategoria;
 import com.dawes.service.ServicioEtiqueta;
-import com.dawes.service.ServicioRol;
 import com.dawes.service.ServicioUsuario;
-import com.dawes.service.ServicioUsuarioRol;
 
 @Controller
 @RequestMapping("/usuario")

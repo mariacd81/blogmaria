@@ -46,8 +46,9 @@ public class PostVO {
 	 
 	@OneToMany(mappedBy="post",cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<EtiquetaPostVO> etiquetapost;	  
-	
-	@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
+
+
+@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<ComentarioVO> comentarios;	
 	
 	
@@ -57,6 +58,7 @@ public class PostVO {
 	public void setComentarios(List<ComentarioVO> comentarios) {
 		this.comentarios = comentarios;
 	}
+
 	public PostVO(String post, LocalDate fecha, String titulo, CategoriaVO categoria, String foto) {
 		super();
 		this.post = post;

@@ -21,12 +21,13 @@
 				<div class="row form">
 					<form th:object="${usuario}" th:action="@{/perfil/modificar}" method="post">
 						<p>Modificar perfil</p>
-						<p><input type="text" placeholder="Usuario" disabled th:field="*{username}" /></p>
-						<p><input type="password" placeholder="Contraseña" autocomplete="false" th:field="*{password}" /></p>
-						<p><input type="password" placeholder=" Repita Contraseña" /></p>
-						<p><input type="text" placeholder="Nombre" th:field="*{nombre}" /></p>
-						<p><input type="text" placeholder="apellidos" th:field="*{apellidos}" /></p>
-						<p><input type="email" placeholder="correo" th:field="*{correo}" /></p>
+						<p><input type="hidden" placeholder="Usuario" th:field="*{username}" /></p>
+						<p><label>Usuario:</label><input type="text" placeholder="Usuario" disabled th:field="*{username}" /></p>
+						<p><label>Contraseï¿½a:</label><input type="password" placeholder="Contraseï¿½a" autocomplete="false" th:field="*{password}" /></p>
+						<p><label>Repetir Contraseï¿½a:</label><input type="password" placeholder=" Repita Contraseï¿½a" /></p>
+						<p><label>Nombre:</label><input type="text" placeholder="Nombre" th:field="*{nombre}" /></p>
+						<p><label>Apellidos:</label><input type="text" placeholder="apellidos" th:field="*{apellidos}" /></p>
+						<p><label>Email:</label><input type="email" placeholder="correo" th:field="*{correo}" /></p>
 						<p><input class="btn" type="submit" value="Modificar" id="entrar" /></p>
 					</form>
 				</div>
@@ -41,7 +42,7 @@
 
 	</main>
 
-
+<div th:replace="fragmentos/footer.html :: footer"> </div>
 </body>
 
 </html>

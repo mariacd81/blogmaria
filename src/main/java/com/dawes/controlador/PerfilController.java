@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dawes.modelo.CategoriaVO;
 import com.dawes.modelo.EtiquetaVO;
-import com.dawes.modelo.RolVO;
-import com.dawes.modelo.UsuarioRolVO;
 import com.dawes.modelo.UsuarioVO;
 import com.dawes.seguridad.EncrytedPasswordUtils;
 import com.dawes.service.ServicioCategoria;
 import com.dawes.service.ServicioEtiqueta;
-import com.dawes.service.ServicioRol;
 import com.dawes.service.ServicioUsuario;
-import com.dawes.service.ServicioUsuarioRol;
 
 @Controller
 @RequestMapping("/perfil")
@@ -64,6 +60,7 @@ public class PerfilController {
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
+		modelo.addAttribute("usuario", usuario);
 		aside(modelo);
 		return "perfil/verUsuario";
 	}

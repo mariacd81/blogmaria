@@ -4,6 +4,11 @@ form >p> label,form >p>input, form >p> textarea{
 	width: 100%;
 }
 
+form >p> label,form >p>input, form >p> input{
+
+	display: block;
+	width: 85%;
+}
 
 #enviar{
 	color: #fff;

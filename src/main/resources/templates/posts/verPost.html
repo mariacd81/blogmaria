@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Ver Post</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="../css/header.css" rel="stylesheet" type="text/css" />
-	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
-	<script src="../javascript/jquery-3.4.1.js"></script>
+<meta charset="ISO-8859-1">
+<title>Ver Post</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/header.css" rel="stylesheet" type="text/css" />
+<link href="../css/crear.css" rel="stylesheet" type="text/css" />
+<script src="../javascript/jquery-3.4.1.js"></script>
+<style>
+div.pull-left {
+	float: left;
+	padding-right: 1rem;
+	max-width: 50%;
+}
 
+.comentario {
+	width: 100%;
+}
+
+.encajap {
+	font-size: 100%;
+	line-height: 150%;
+	margin: 0 0 1.5rem 0;
+}
+
+.encaja>img {
+	width: 50%;
+	max-width: 100%;
+	height: auto;
+	max-height: none;
+}
+
+
+</style>
 </head>
+
 
 <body>
 	<header th:replace="fragmentos/header.html :: header"></header>
@@ -20,42 +47,53 @@
 			<!-------------------------Post principal----------------------------------->
 			<div class="col-md-9 postprinci container">
 				<div class="row postp">
-					<h1 th:text="${post.titulo}"></h1>
-					<p th:text="${post.fecha}"></p>
-					<img th:src="@{${ruta}+${post.foto}}"><img>
-					<p th:text="${post.post}"></p>
-					<div th:if="${sig}">
-						<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post -></a>
+					<div class="container">
+						<h1 th:text="${post.titulo}"></h1>
+					</div>
+					<div  class="fecha"><div><p  th:text="${post.fecha}"></p></div></div>
+					<div>
+						<p class="encajap">
+						<div class="encaja">
+							<img th:src="@{${ruta}+${post.foto}}" />
+						</div>
+						<span th:text="${post.post}"> </span>
+						</p>
 					</div>
 				</div>
+				<div th:if="${sig}">
+					<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post
+						-></a>
+				</div>
+
 				<div class="row">
-					<h5>Comentarios</h5>
-					<div th:if="${session.username}">
-						<div class="media text-muted pt-3">
-							<div class="comentario">
-								<form th:action="@{/post/guardarComentario}" method="POST">
-									<input type="hidden" name="postid" th:field="${post.postid}">
-									<textarea id="coment" name="comentario" rows="3"></textarea>
-									<input type="submit" value="Comentar" class="btn">
-								</form>
+					<div class="container">
+						<h5>Comentarios</h5>
+						<div th:if="${session.username}">
+							<div class="media text-muted">
+								<div class="  comentario">
+									<form th:action="@{/post/guardarComentario}" method="POST">
+										<input type="hidden" name="postid" th:field="${post.postid}">
+										<textarea id="coment" name="comentario" rows="3"></textarea>
+										<input type="submit" value="Comentar" class="btn">
+									</form>
+								</div>
 							</div>
-							<div class=" pb-3 border-bottom border-gray" th:each="comentarios: ${comentarios}">
+							<div class=" pb-3 border-bottom border-gray"
+								th:each="comentarios: ${comentarios}">
 								<strong class="d-block text-gray-dark"></strong><span>Publicado:</span>
-								<span th:text="${comentarios.fecha}"></span>
-								<span>por @</span>
+								<span th:text="${comentarios.fecha}"></span> <span>por @</span>
 								<span th:text="${comentarios.userid.username}"></span>
 								<p th:text="${comentarios.coment}"></p>
 								</p>
 							</div>
 						</div>
+
 					</div>
-					<div th:unless="${session.username}">
-						Debe estar registrado
-					</div>
+					<div th:unless="${session.username}">Debe estar registrado</div>
 
 					<div class="row">
 						<h5>Anteriores</h5>
-						<div class=" anteriores">
+						<div class="row anteriores">
 							<div th:if="${sig}" class="col-md-4">
 								<div>
 									<h5 th:text="${sig.titulo}"></h5>
@@ -72,7 +110,7 @@
 								</div>
 								<a th:href="@{/posts/verpost(id=${sig1.postid})}">Leer mas</a>
 							</div>
-							<div th:if="${sig2}">
+							<div th:if="${sig2}" class="col-md-4">
 								<div>
 									<h5 th:text="${sig2.titulo}"></h5>
 									<img th:src="@{${ruta}+${sig2.foto}}"><img>
@@ -93,7 +131,7 @@
 
 	</main>
 
-
+<div th:replace="fragmentos/footer.html :: footer"> </div>
 </body>
 
 </html>

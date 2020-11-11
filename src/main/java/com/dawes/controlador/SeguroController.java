@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dawes.modelo.CategoriaVO;
 import com.dawes.modelo.EtiquetaVO;
 import com.dawes.modelo.PostVO;
-import com.dawes.repository.PostRepository;
 import com.dawes.service.ServicioCategoria;
 import com.dawes.service.ServicioEtiqueta;
 import com.dawes.service.ServicioPost;
 
 @Controller
-public class Seguro {
+public class SeguroController {
 	@Autowired
 	ServicioPost sp;
 	
