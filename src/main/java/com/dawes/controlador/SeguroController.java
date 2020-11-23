@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +15,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.dawes.modelo.CategoriaVO;
 import com.dawes.modelo.EtiquetaVO;
@@ -105,6 +111,26 @@ public class SeguroController {
 
 		modelo.addAttribute("message", "No tienes permiso de acceso a esta página");
 		return "403Page";
+	}
+	/*
+	@RequestMapping(value = "/error")
+	public String accesoServidor(Model modelo) {
+
+		modelo.addAttribute("message", "No se puede conectar con el servidor");
+		return "500Page";
+	}*/
+	
+	@ControllerAdvice
+	public class ControllerExceptionHandler {
+
+	  private Logger log = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+
+	  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	  @ExceptionHandler(Exception.class)
+	  public void notFoundHandler() {
+	    log.debug("Item not found. HTTP 500 returned.");
+	  }
+
 	}
 	
 	

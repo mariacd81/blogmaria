@@ -8,7 +8,7 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="../../css/header.css" rel="stylesheet" type="text/css" />
 	<link href="../../css/crear.css" rel="stylesheet" type="text/css" />
-
+	<link href="../css/sticky-footer.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <header th:replace="fragmentos/header.html :: header"></header>
@@ -19,6 +19,7 @@
 				<div class="row form">
 				 <form th:object="${usuario}" th:action="@{/usuario/modificar}" method="post" >
 				 	<p>Modificar usuario</p>
+				 	 <input type="hidden"  th:field="*{userid}"></p>
 				 	<p><label>Usuario:</label><input type="text" placeholder="Usuario" disabled th:field="*{username}" /></p>
 						<p><label>Contraseña:</label><input type="password" placeholder="Contrase�a" autocomplete="false" th:field="*{password}" /></p>
 						<p><label>Repetir Contraseña:</label><input type="password" placeholder=" Repita Contrase�a" /></p>

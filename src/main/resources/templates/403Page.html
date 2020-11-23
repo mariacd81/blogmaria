@@ -4,14 +4,13 @@
 <title>Acceso Denegado</title>
 </head>
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="../css/sticky-footer.css" rel="stylesheet" type="text/css" />
 <body>
-<header th:replace="fragmentos/header.html :: header"></header>
-
- 
-    <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
- 
-    <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+<header th:replace="fragmentos/header.html :: header"></header> 
+    <h3 th:if="${message != null}" th:utext="${message}"></h3> 
+    <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>    
      <a th:href="@{index}">Volver</a>
+<footer th:replace="fragmentos/footer.html :: footer"></footer>
 </body>
  
 </html>

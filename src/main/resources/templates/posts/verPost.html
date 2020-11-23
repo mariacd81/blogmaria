@@ -10,29 +10,9 @@
 <link href="../css/header.css" rel="stylesheet" type="text/css" />
 <link href="../css/crear.css" rel="stylesheet" type="text/css" />
 <script src="../javascript/jquery-3.4.1.js"></script>
+	<link href="../css/sticky-footer.css" rel="stylesheet" type="text/css" />
 <style>
-div.pull-left {
-	float: left;
-	padding-right: 1rem;
-	max-width: 50%;
-}
 
-.comentario {
-	width: 100%;
-}
-
-.encajap {
-	font-size: 100%;
-	line-height: 150%;
-	margin: 0 0 1.5rem 0;
-}
-
-.encaja>img {
-	width: 50%;
-	max-width: 100%;
-	height: auto;
-	max-height: none;
-}
 
 
 </style>
@@ -100,7 +80,7 @@ div.pull-left {
 									<img th:src="@{${ruta}+${sig.foto}}"><img>
 									<p th:text="${sig.post}"></p>
 								</div>
-								<a th:href="@{/posts/verpost(id=${sig.postid})}">Leer mas</a>
+								<a th:href="@{/post/verpost(id=${sig.postid})}">Leer mas</a>
 							</div>
 							<div th:if="${sig1}" class="col-md-4">
 								<div>
@@ -108,7 +88,7 @@ div.pull-left {
 									<img th:src="@{${ruta}+${sig1.foto}}"><img>
 									<p th:text="${sig1.post}"></p>
 								</div>
-								<a th:href="@{/posts/verpost(id=${sig1.postid})}">Leer mas</a>
+								<a th:href="@{/post/verpost(id=${sig1.postid})}">Leer mas</a>
 							</div>
 							<div th:if="${sig2}" class="col-md-4">
 								<div>
@@ -116,7 +96,7 @@ div.pull-left {
 									<img th:src="@{${ruta}+${sig2.foto}}"><img>
 									<p th:text="${sig2.post}"></p>
 								</div>
-								<a th:href="@{/posts/verpost(id=${sig2.postid})}">Leer mas</a>
+								<a th:href="@{/post/verpost(id=${sig2.postid})}">Leer mas</a>
 							</div>
 
 						</div>

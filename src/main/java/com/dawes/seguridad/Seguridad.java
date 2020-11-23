@@ -49,6 +49,8 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
                    .failureUrl("/login?error=true")
                    .and()
                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+           
+           
                  
                    
 

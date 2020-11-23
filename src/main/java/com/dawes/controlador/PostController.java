@@ -161,9 +161,6 @@ public class PostController {
 	@RequestMapping("/eliminar")
 	public String eliminarPost(@RequestParam int postid,Model modelo) {		
 		PostVO p = sp.findById(postid).get();
-
-			sep.deleteAll(p.getEtiquetapost());
-		
 		sp.delete(p);
 		aside(modelo);
 		buscarTodos(modelo);

@@ -65,6 +65,12 @@ public class ServicioEtiquetaPostImpl implements ServicioEtiquetaPost {
 		// TODO Auto-generated method stub
 		return epr.findByEtiqueta(etiqueta);
 	}
+
+	@Override
+	public void delete(EtiquetaPostVO eti) {
+		// TODO Auto-generated method stub
+		 epr.delete(eti);
+	}
 	
 	
  

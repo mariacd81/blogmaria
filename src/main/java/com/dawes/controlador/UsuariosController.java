@@ -57,14 +57,17 @@ public class UsuariosController {
 	}
 	
 	@RequestMapping("/modificar")
-	public String modificar(@ModelAttribute UsuarioVO user, Model modelo) {					
-		UsuarioVO usuario = su.findByUsername(user.getUsername());
+	public String modificar(@ModelAttribute UsuarioVO user, Model modelo) {	
+		
+		UsuarioVO usuario = su.findById(user.getUserid().intValue()).get();
 		usuario.setApellidos(user.getApellidos());
 		String pass = EncrytedPasswordUtils.encrytePassword(user.getPassword());
 		usuario.setPassword(pass);	
 		usuario.setCorreo(user.getCorreo());
 		usuario.setNombre(user.getNombre());
 		su.save(usuario);
+		Iterable<UsuarioVO> usuarios = su.findAll();
+		modelo.addAttribute("usuario", usuarios);
 		aside(modelo);
 		return "usuarios/listaUsuario";
 	}

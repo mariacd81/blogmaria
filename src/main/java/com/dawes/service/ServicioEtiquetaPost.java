@@ -15,4 +15,5 @@ public interface ServicioEtiquetaPost {
 	void removeById(long epv);
 	Optional<EtiquetaPostVO> findById(long i);
 	Iterable<EtiquetaPostVO> findByEtiqueta(EtiquetaVO etiqueta);
+	void delete(EtiquetaPostVO eti);
 }

@@ -13,7 +13,6 @@ public interface ServicioPost {
 	Iterable<PostVO> findAll();
 	Optional<PostVO> findById(int postid);
 	void save(PostVO postt);
-	/*Page<PostVO> findAll(PageRequest of);*/
 	List<PostVO> findByOrderByPostidDesc();
 	void delete(PostVO postid);
 
