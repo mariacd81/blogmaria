@@ -4,11 +4,14 @@ package com.dawes.controlador;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +32,7 @@ import com.dawes.service.ServicioEtiqueta;
 import com.dawes.service.ServicioPost;
 
 @Controller
-public class SeguroController {
+public class SeguroController implements ErrorController {
 	@Autowired
 	ServicioPost sp;
 	
@@ -103,7 +106,7 @@ public class SeguroController {
 	@RequestMapping("/logout")
 	public String logout(Model modelo) {
 		cargar(modelo);		
-		return "index";
+		return "login";
 	}
 
 	@RequestMapping(value = "/403")
@@ -114,24 +117,26 @@ public class SeguroController {
 	}
 	/*
 	@RequestMapping(value = "/error")
-	public String accesoServidor(Model modelo) {
+	public String handleError(HttpServletRequest request,Model modelo) {
 
 		modelo.addAttribute("message", "No se puede conectar con el servidor");
 		return "500Page";
 	}*/
 	
-	@ControllerAdvice
-	public class ControllerExceptionHandler {
+	private static final String PATH = "/error";
 
-	  private Logger log = LoggerFactory.getLogger(ControllerExceptionHandler.class);
+    @RequestMapping(value = PATH)
+    public String error() {
+    	return "500Page";
+    }
 
-	  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	  @ExceptionHandler(Exception.class)
-	  public void notFoundHandler() {
-	    log.debug("Item not found. HTTP 500 returned.");
-	  }
-
+	@Override
+	public String getErrorPath() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
+	
 	
 	
 }

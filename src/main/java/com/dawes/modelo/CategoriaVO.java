@@ -26,7 +26,7 @@ public class CategoriaVO {
 	private Long categoriaid;	
 	private String descripcion;
 	
-	@OneToMany(mappedBy="categoria",fetch=FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
+	@OneToMany(mappedBy="categoria")
 	private List<PostVO> postca;
 
 	public CategoriaVO() {

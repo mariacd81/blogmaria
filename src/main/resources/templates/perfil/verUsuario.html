@@ -8,6 +8,7 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="../css/header.css" rel="stylesheet" type="text/css" />
 	<link href="../css/crear.css" rel="stylesheet" type="text/css" />
+<link href="../css/sticky-footer.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -21,9 +22,9 @@
 				 <form th:object="${usuario}"  method="post">
 						<p>Ver usuario</p>
 						<p><label>Usuario:</label><input type="text" placeholder="Usuario" disabled th:field="*{username}" />
-						<p><label>Nombre:</label><input type="text" placeholder="Nombre" th:field="*{nombre}" /></p>
-						<p><label>Apellidos:</label><input type="text" placeholder="apellidos" th:field="*{apellidos}" /></p>
-						<p><label>Email:</label><input type="email" placeholder="correo" th:field="*{correo}" /></p>
+						<p><label>Nombre:</label><input type="text" placeholder="Nombre" disabled th:field="*{nombre}" /></p>
+						<p><label>Apellidos:</label><input type="text" placeholder="apellidos" disabled th:field="*{apellidos}" /></p>
+						<p><label>Email:</label><input type="email" placeholder="correo" disabled th:field="*{correo}" /></p>
 						<p><a  class="btn" th:href="@{/perfil/modificarForm}">Modificar</a></p>	
 					</form>
 				</div>

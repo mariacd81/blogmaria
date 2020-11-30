@@ -22,9 +22,7 @@ class PreparacionApplicationTests {
 	
 	
 	@Test
-	void contextLoads() {
-	
-		
+	void contextLoads() {		
 		Optional<PostVO> e = sep.findById(5);
 		Iterable<EtiquetaPostVO> et = sep.findById(5).get().getEtiquetapost();
 		for(EtiquetaPostVO eti : et)

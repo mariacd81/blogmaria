@@ -36,6 +36,9 @@ public class UsuarioVO {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
 	private Set<UsuarioRolVO> roles;
 	
+	@OneToMany(mappedBy = "userid", fetch = FetchType.EAGER, cascade = { CascadeType.ALL }, orphanRemoval = true)
+	private Set<ComentarioVO> comentario;
+	
 	
 
 	public UsuarioVO() {

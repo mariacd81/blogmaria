@@ -44,11 +44,11 @@ public class PostVO {
 	
 	private String foto;
 	 
-	@OneToMany(mappedBy="post",cascade= {CascadeType.ALL}, orphanRemoval = true)
+	@OneToMany(mappedBy="post",fetch = FetchType.EAGER,cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<EtiquetaPostVO> etiquetapost;	  
 
 
-@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
+	@OneToMany(mappedBy="postc",cascade= {CascadeType.ALL}, orphanRemoval = true)
 	private List<ComentarioVO> comentarios;	
 	
 	

@@ -18,11 +18,11 @@
 			<div  class="col-md-9">
 				<div class="row form">
 				 <form th:object="${usuario}" th:action="@{/usuario/modificar}" method="post" >
-				 	<p>Modificar usuario</p>
+				 	<h3>Modificar usuario</h3>
 				 	 <input type="hidden"  th:field="*{userid}"></p>
 				 	<p><label>Usuario:</label><input type="text" placeholder="Usuario" disabled th:field="*{username}" /></p>
 						<p><label>Contraseña:</label><input type="password" placeholder="Contrase�a" autocomplete="false" th:field="*{password}" /></p>
-						<p><label>Repetir Contraseña:</label><input type="password" placeholder=" Repita Contrase�a" /></p>
+						<p><label>Repetir Contraseña:</label><input type="password" placeholder=" Repita Contraseña" /></p>
 						<p><label>Nombre:</label><input type="text" placeholder="Nombre" th:field="*{nombre}" /></p>
 						<p><label>Apellidos:</label><input type="text" placeholder="apellidos" th:field="*{apellidos}" /></p>
 						<p><label>Email:</label><input type="email" placeholder="correo" th:field="*{correo}" /></p>

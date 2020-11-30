@@ -59,14 +59,17 @@ public class RegistroController {
 	
 	@RequestMapping("/registrar")
 	public String registrar(@ModelAttribute UsuarioVO user, Model modelo) {
+		//debe elegir otro usuario
+		//
+		
 		String pass = EncrytedPasswordUtils.encrytePassword(user.getPassword());
 		user.setPassword(pass);
 		su.save(user);
 		RolVO rol = sr.findById(2).get();
-		sur.save(new UsuarioRolVO(user,rol));
-		PostVO post1 = sp.findById(1).get();
+		UsuarioVO usuario = su.findByUsername(user.getUsername());
+		sur.save(new UsuarioRolVO(usuario,rol));
 		cargar(modelo);
-		return "index";
+		return "login";
 	}
 	
 	private void cargar(Model modelo) {

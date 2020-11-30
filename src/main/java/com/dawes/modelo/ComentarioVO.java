@@ -23,7 +23,7 @@ public class ComentarioVO {
 	private String coment;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_post")
+	@JoinColumn(name = "postid")
 	private PostVO postc;
  
 	@ManyToOne(fetch = FetchType.EAGER)
