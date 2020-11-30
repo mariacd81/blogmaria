@@ -21,6 +21,7 @@
 				 
 				 <form th:object="${usuario}" th:action="@{/registro/registrar}" method="post">
 						<p>Modificar perfil</p>
+						<p class="error" th:text="${error}"></p>
 						<p><label>Usuario:</label><input type="text" placeholder="Usuario" th:field="*{username}" /></p>
 						<p><label>Contraseña:</label><input type="password" placeholder="Contraseña" autocomplete="false" th:field="*{password}" /></p>
 						<p><label>Repetir Contraseña:</label><input type="password" placeholder=" Repita Contraseña" /></p>

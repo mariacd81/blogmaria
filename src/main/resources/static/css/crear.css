@@ -61,4 +61,12 @@ width: auto;
 float: right;
 }
 
+.seleccionar{
+	float: left;
+}
+
+.error{
+	color:red;
+}
+
 

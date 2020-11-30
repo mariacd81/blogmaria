@@ -54,6 +54,7 @@ public class RegistroController {
 		modelo.addAttribute("categorias", cat);
 		Iterable<EtiquetaVO> eti = se.findAll();
 		modelo.addAttribute("etiquetas", eti);
+		modelo.addAttribute("error","");
 		return "registroForm";
 	}
 	
@@ -61,7 +62,14 @@ public class RegistroController {
 	public String registrar(@ModelAttribute UsuarioVO user, Model modelo) {
 		//debe elegir otro usuario
 		//
-		
+		if(su.findByUsername(user.getUsername()) != null)
+		{
+			UsuarioVO u = new UsuarioVO();
+			modelo.addAttribute("usuario", u);	
+			modelo.addAttribute("error","El usuario ya existe");
+			cargar(modelo);
+			return "registroForm";
+		}
 		String pass = EncrytedPasswordUtils.encrytePassword(user.getPassword());
 		user.setPassword(pass);
 		su.save(user);

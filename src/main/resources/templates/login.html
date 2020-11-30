@@ -19,12 +19,18 @@
 			<!-------------------------Post principal----------------------------------->
 			<div class="col-md-9 postprinci container">
 				<div class="row postp">
-					<h1 th:text="${post.titulo}"></h1>
-					<p  th:text="${post.fecha}"></p>
-					<img th:src="@{${ruta}+${post.foto}}"><img>
-					<p th:text="${post.post}"></p>
-					<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post -></a>
-					
+					<div class="container">
+						<h1 th:text="${post.titulo}"></h1>
+					</div>
+					<div  class="fecha"><div><p  th:text="${post.fecha}"></p></div></div>
+					<div>
+						<p class="encajap">
+						<div class="encaja">
+							<img th:src="@{${ruta}+${post.foto}}" />
+						</div>
+						<span th:text="${post.post}"> </span>
+						</p>
+					</div>
 				</div>
 				<div class="row">
 					<div class=" row anteriores">
