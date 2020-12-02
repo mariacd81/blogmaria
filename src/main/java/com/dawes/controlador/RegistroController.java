@@ -2,6 +2,7 @@ package com.dawes.controlador;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,7 +76,8 @@ public class RegistroController {
 		String pass = EncrytedPasswordUtils.encrytePassword(user.getPassword());
 		user.setPassword(pass);
 		su.save(user);
-		RolVO rol = sr.findById(2).get();
+		Optional<RolVO> role = sr.findById(2);
+		RolVO rol = role.get();
 		UsuarioVO usuario = su.findByUsername(user.getUsername());
 		sur.save(new UsuarioRolVO(usuario,rol));
 		cargar(modelo);

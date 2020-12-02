@@ -11,6 +11,7 @@ import com.dawes.modelo.PostVO;
 import com.dawes.service.ServicioEtiqueta;
 import com.dawes.service.ServicioEtiquetaPost;
 import com.dawes.service.ServicioPost;
+import com.dawes.service.ServicioRol;
 
 @SpringBootTest
 class PreparacionApplicationTests {
@@ -18,17 +19,13 @@ class PreparacionApplicationTests {
 	ServicioPost sep;
 	
 	@Autowired
-	ServicioEtiquetaPost sepet;
+	ServicioRol sepet;
 	
 	
 	@Test
 	void contextLoads() {		
-		Optional<PostVO> e = sep.findById(5);
-		Iterable<EtiquetaPostVO> et = sep.findById(5).get().getEtiquetapost();
-		for(EtiquetaPostVO eti : et)
-			sepet.delete(eti);
-		System.out.println(e.get().getTitulo());
-		sep.delete(e.get());
+		
+		System.out.println(sepet.findById(2).get().getRoleName());
 	}
 
 }
