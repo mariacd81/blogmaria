@@ -45,6 +45,8 @@ public class RegistroController {
 	@Autowired
 	ServicioUsuarioRol sur;	
 
+	
+	
 
 	@RequestMapping("/form")
 	public String registro(Model modelo) {

@@ -24,7 +24,11 @@
 					<div class="container">
 						<h1 th:text="${post.titulo}"></h1>
 					</div>
-					<div  class="fecha"><div><p  th:text="${post.fecha}"></p></div></div>
+					<div class="fecha">
+						<div>
+							<p th:text="${post.fecha}"></p>
+						</div>
+					</div>
 					<div>
 						<p class="encajap">
 						<div class="encaja">
@@ -35,10 +39,11 @@
 					</div>
 				</div>
 				<div th:if="${sig}">
-					<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post 	-></a>
+					<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post
+						-></a>
 				</div>
 
-				
+
 				<div class="row">
 					<div class=" row anteriores">
 						<div class="col-md-4">

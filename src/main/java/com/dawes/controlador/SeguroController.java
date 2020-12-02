@@ -46,6 +46,15 @@ public class SeguroController implements ErrorController {
 	public String admin() {
 		return "admin/a";
 	}
+	
+	@RequestMapping("/sobremi")
+	public String sbobremi(Model modelo) {
+		Iterable<CategoriaVO> cat = sc.findeAll();
+		modelo.addAttribute("categorias", cat);
+		Iterable<EtiquetaVO> eti = se.findAll();
+		modelo.addAttribute("etiquetas", eti);
+		return "sobremi";
+	}
 
 	@RequestMapping("/registrado")
 	public String registrado(Model modelo, HttpSession session) {
