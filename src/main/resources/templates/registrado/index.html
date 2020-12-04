@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div th:if="${sig}">
-					<a th:href="@{/posts/verpost(id=${sig.postid})}">Siguiente post 	-></a>
+					<a th:href="@{/post/verpost(id=${sig.postid})}">Siguiente post 	-></a>
 				</div>
 				<div class="row">
 					<div class=" row anteriores">
@@ -45,7 +45,7 @@
 							<img th:src="@{${ruta}+${sig.foto}}"><img>
 							<p th:text="${sig.post}"></p>
 							</div>
-							<a th:href="@{/posts/verpost(id=${sig.postid})}">Leer mas</a>
+							<a th:href="@{/post/verpost(id=${sig.postid})}">Leer mas</a>
 						</div>
 						<div class="col-md-4">
 							<div>
@@ -53,7 +53,7 @@
 							<img th:src="@{${ruta}+${sig1.foto}}"><img>
 							<p th:text="${sig1.post}"></p>
 							</div>
-							<a th:href="@{/posts/verpost(id=${sig1.postid})}">Leer mas</a>
+							<a th:href="@{/post/verpost(id=${sig1.postid})}">Leer mas</a>
 						</div>
 						<div class="col-md-4">
 							<div>
@@ -61,7 +61,7 @@
 							<img th:src="@{${ruta}+${sig2.foto}}"><img>
 							<p th:text="${sig2.post}"></p>
 							</div>
-							<a th:href="@{/posts/verpost(id=${sig2.postid})}">Leer mas</a>
+							<a th:href="@{/post/verpost(id=${sig2.postid})}">Leer mas</a>
 						</div>
 
 					</div>

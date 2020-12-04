@@ -1,5 +1,5 @@
 <div th:fragment="aside">
-	<div class="row form">
+	<div class="form">
 		<div th:if="${session.username}">
 			<p><span id="prim">Hola</span> <span th:text="${session.username}"></span></p>
 			<p><a th:href="@{/perfil/ver}">Mi perfil</a></p>
